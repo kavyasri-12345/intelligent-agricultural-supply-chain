@@ -15,6 +15,7 @@ import {
   BarChart3,
   RefreshCw
 } from 'lucide-react';
+import { getBackendUrl } from '@/lib/api';
 
 export default function FarmManagementPage() {
   const [farms, setFarms] = useState<any[]>([]);
@@ -34,13 +35,13 @@ export default function FarmManagementPage() {
   const fetchFarmData = async () => {
     setLoading(true);
     try {
-      const farmsRes = await fetch('http://localhost:5000/api/v1/farms');
+      const farmsRes = await fetch(getBackendUrl('/api/v1/farms'));
       if (farmsRes.ok) {
         const f = await farmsRes.json();
         setFarms(f);
       }
 
-      const clusterRes = await fetch(`http://localhost:5000/api/v1/farms/clusters?method=${method}&n_clusters=5`);
+      const clusterRes = await fetch(getBackendUrl(`/api/v1/farms/clusters?method=${method}&n_clusters=5`));
       if (clusterRes.ok) {
         const c = await clusterRes.json();
         setClusters(c.clusters || []);
@@ -59,7 +60,7 @@ export default function FarmManagementPage() {
   const handleRegisterFarm = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/v1/farms', {
+      const res = await fetch(getBackendUrl('/api/v1/farms'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -25,6 +25,7 @@ import {
   ResponsiveContainer,
   Legend
 } from 'recharts';
+import { getAiUrl } from '@/lib/api';
 
 export default function SupplyForecastingPage() {
   const [horizon, setHorizon] = useState<number>(7);
@@ -36,7 +37,7 @@ export default function SupplyForecastingPage() {
   const fetchForecast = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:8000/api/v1/forecast/supply', {
+      const res = await fetch(getAiUrl('/api/v1/forecast/supply'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ crop: 'tomato', horizon_days: horizon, model })
@@ -46,7 +47,7 @@ export default function SupplyForecastingPage() {
         setForecastData(data);
       }
 
-      const histRes = await fetch('http://localhost:8000/api/v1/forecast/supply/historical?limit_days=21');
+      const histRes = await fetch(getAiUrl('/api/v1/forecast/supply/historical?limit_days=21'));
       if (histRes.ok) {
         const hData = await histRes.json();
         setHistoricalData(hData);

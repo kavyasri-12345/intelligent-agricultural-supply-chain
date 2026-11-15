@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Wheat, ShieldCheck, LogIn, ArrowRight, UserCheck } from 'lucide-react';
+import { getBackendUrl } from '@/lib/api';
 
 const QUICK_ROLES = [
   {
@@ -65,7 +66,7 @@ export default function LoginPage() {
     const loginPassword = customCreds ? customCreds.password : password;
 
     try {
-      const res = await fetch('http://localhost:5000/api/v1/auth/login', {
+      const res = await fetch(getBackendUrl('/api/v1/auth/login'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: loginEmail, password: loginPassword })

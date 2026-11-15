@@ -14,6 +14,7 @@ import {
   Snowflake,
   Fuel
 } from 'lucide-react';
+import { getBackendUrl, getAiUrl } from '@/lib/api';
 
 export default function TransportationPage() {
   const [vehicles, setVehicles] = useState<any[]>([]);
@@ -22,11 +23,11 @@ export default function TransportationPage() {
 
   const fetchTransportData = async () => {
     try {
-      const vRes = await fetch('http://localhost:5000/api/v1/transport/vehicles');
+      const vRes = await fetch(getBackendUrl('/api/v1/transport/vehicles'));
       if (vRes.ok) setVehicles(await vRes.json());
 
       // Fetch sample VRPTW solution routes
-      const optRes = await fetch('http://localhost:8000/api/v1/optimization/solve', {
+      const optRes = await fetch(getAiUrl('/api/v1/optimization/solve'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ scenario: 'NORMAL' })

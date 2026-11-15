@@ -30,6 +30,7 @@ import {
   BarChart,
   Bar
 } from 'recharts';
+import { getBackendUrl } from '@/lib/api';
 
 export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
@@ -43,7 +44,7 @@ export default function DashboardPage() {
     setLoading(true);
     try {
       // 1. Fetch Summary from Backend
-      const res = await fetch('http://localhost:5000/api/v1/analytics/dashboard-summary');
+      const res = await fetch(getBackendUrl('/api/v1/analytics/dashboard-summary'));
       if (res.ok) {
         const data = await res.json();
         setSummary(data.summary);
@@ -70,9 +71,9 @@ export default function DashboardPage() {
 
       // 2. Fetch Farms, Facilities & Retailers for Map
       const [farmsRes, storageRes, retRes] = await Promise.all([
-        fetch('http://localhost:5000/api/v1/farms?limit=40'),
-        fetch('http://localhost:5000/api/v1/storage'),
-        fetch('http://localhost:5000/api/v1/retailers')
+        fetch(getBackendUrl('/api/v1/farms?limit=40')),
+        fetch(getBackendUrl('/api/v1/storage')),
+        fetch(getBackendUrl('/api/v1/retailers'))
       ]);
 
       const points: any[] = [];

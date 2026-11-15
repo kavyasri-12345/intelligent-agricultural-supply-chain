@@ -23,6 +23,7 @@ import {
   Tooltip, 
   ResponsiveContainer 
 } from 'recharts';
+import { getBackendUrl } from '@/lib/api';
 
 export default function AIIntelligencePage() {
   const [metrics, setMetrics] = useState<any>(null);
@@ -32,7 +33,7 @@ export default function AIIntelligencePage() {
   const fetchAiData = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/v1/analytics/ai-intelligence');
+      const res = await fetch(getBackendUrl('/api/v1/analytics/ai-intelligence'));
       if (res.ok) {
         const data = await res.json();
         setMetrics(data.metrics);

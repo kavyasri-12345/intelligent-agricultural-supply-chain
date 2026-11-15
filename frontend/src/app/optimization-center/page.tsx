@@ -29,6 +29,7 @@ import {
   ResponsiveContainer,
   Legend
 } from 'recharts';
+import { getBackendUrl } from '@/lib/api';
 
 export default function OptimizationCenterPage() {
   const [scenario, setScenario] = useState<string>('NORMAL');
@@ -48,7 +49,7 @@ export default function OptimizationCenterPage() {
     setRunning(true);
     setIsApproved(false);
     try {
-      const res = await fetch('http://localhost:5000/api/v1/optimization/run', {
+      const res = await fetch(getBackendUrl('/api/v1/optimization/run'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -66,7 +67,7 @@ export default function OptimizationCenterPage() {
       }
 
       // Benchmark against Baselines A, B, C
-      const baseRes = await fetch(`http://localhost:5000/api/v1/optimization/baselines?scenario=${scenario}`);
+      const baseRes = await fetch(getBackendUrl(`/api/v1/optimization/baselines?scenario=${scenario}`));
       if (baseRes.ok) {
         setBaselineComparison(await baseRes.json());
       }
@@ -84,7 +85,7 @@ export default function OptimizationCenterPage() {
   const handleApprovePlan = async () => {
     if (!solution?.id) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/v1/optimization/runs/${solution.id}/approve`, {
+      const res = await fetch(getBackendUrl(`/api/v1/optimization/runs/${solution.id}/approve`), {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('agri_jwt_token') || ''}`

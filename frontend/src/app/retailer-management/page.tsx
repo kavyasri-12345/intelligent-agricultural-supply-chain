@@ -12,6 +12,7 @@ import {
   TrendingUp,
   MapPin
 } from 'lucide-react';
+import { getBackendUrl } from '@/lib/api';
 
 export default function RetailerManagementPage() {
   const [retailers, setRetailers] = useState<any[]>([]);
@@ -26,8 +27,8 @@ export default function RetailerManagementPage() {
   const fetchData = async () => {
     try {
       const [rRes, oRes] = await Promise.all([
-        fetch('http://localhost:5000/api/v1/retailers'),
-        fetch('http://localhost:5000/api/v1/retailers/orders')
+        fetch(getBackendUrl('/api/v1/retailers')),
+        fetch(getBackendUrl('/api/v1/retailers/orders'))
       ]);
       if (rRes.ok) setRetailers(await rRes.json());
       if (oRes.ok) setOrders(await oRes.json());
@@ -43,7 +44,7 @@ export default function RetailerManagementPage() {
   const handleCreateOrder = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/v1/retailers/orders', {
+      const res = await fetch(getBackendUrl('/api/v1/retailers/orders'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

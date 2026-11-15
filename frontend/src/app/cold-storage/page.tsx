@@ -12,6 +12,7 @@ import {
   Settings,
   ArrowRight
 } from 'lucide-react';
+import { getBackendUrl } from '@/lib/api';
 
 export default function ColdStoragePage() {
   const [facilities, setFacilities] = useState<any[]>([]);
@@ -20,7 +21,7 @@ export default function ColdStoragePage() {
 
   const fetchFacilities = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/v1/storage');
+      const res = await fetch(getBackendUrl('/api/v1/storage'));
       if (res.ok) {
         const data = await res.json();
         setFacilities(data);
@@ -41,7 +42,7 @@ export default function ColdStoragePage() {
   const handleUpdateSetpoint = async () => {
     if (!selectedFacility) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/v1/storage/${selectedFacility.id}/setpoint`, {
+      const res = await fetch(getBackendUrl(`/api/v1/storage/${selectedFacility.id}/setpoint`), {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

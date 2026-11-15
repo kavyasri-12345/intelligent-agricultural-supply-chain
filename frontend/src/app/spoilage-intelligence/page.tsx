@@ -25,6 +25,7 @@ import {
   Tooltip, 
   ResponsiveContainer 
 } from 'recharts';
+import { getBackendUrl } from '@/lib/api';
 
 export default function SpoilageIntelligencePage() {
   const [batches, setBatches] = useState<any[]>([]);
@@ -45,7 +46,7 @@ export default function SpoilageIntelligencePage() {
   const fetchBatches = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:5000/api/v1/batches?scenario=${scenario}`);
+      const res = await fetch(getBackendUrl(`/api/v1/batches?scenario=${scenario}`));
       if (res.ok) {
         const data = await res.json();
         setBatches(data);
@@ -67,7 +68,7 @@ export default function SpoilageIntelligencePage() {
   const handleInspectBatch = async (batch: any) => {
     setSelectedBatch(batch);
     try {
-      const res = await fetch('http://localhost:5000/api/v1/batches/explain', {
+      const res = await fetch(getBackendUrl('/api/v1/batches/explain'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(batch)
@@ -83,7 +84,7 @@ export default function SpoilageIntelligencePage() {
   const handleHarvestSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/v1/batches', {
+      const res = await fetch(getBackendUrl('/api/v1/batches'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

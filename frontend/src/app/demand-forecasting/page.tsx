@@ -25,6 +25,7 @@ import {
   Line,
   Legend
 } from 'recharts';
+import { getAiUrl } from '@/lib/api';
 
 export default function DemandForecastingPage() {
   const [horizon, setHorizon] = useState<number>(7);
@@ -35,7 +36,7 @@ export default function DemandForecastingPage() {
   const fetchDemand = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:8000/api/v1/forecast/demand', {
+      const res = await fetch(getAiUrl('/api/v1/forecast/demand'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ crop: 'tomato', horizon_days: horizon })

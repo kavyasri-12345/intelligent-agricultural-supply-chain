@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+  # 1. PostgreSQL with PostGIS Spatial Extension
+  db:
+    image: postgis/postgis:15-3.3-alpine
+    container_name: agri_postgis_db
+    restart: always
+    environment:
+      POSTGRES_DB: agrisupplychain
+      POSTGRES_USER: agri_admin
+      POSTGRES_PASSWORD: agri_password_2026
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - agri_network
+
+  # 2. Python FastAPI AI, Deep Learning & OR-Tools Service
+  ai_service:
+    build:
+      context: ./ai_service
+      dockerfile: Dockerfile
+    container_name: agri_ai_service
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./ai_service/app/artifacts:/app/app/artifacts
+      - ./ai_service/data_store:/app/data_store
+    networks:
+      - agri_network
+
+  # 3. Node.js Express Orchestration Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: agri_backend
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - AI_SERVICE_URL=http://ai_service:8000
+      - JWT_SECRET=agri_supply_chain_super_secure_research_secret_2026
+    depends_on:
+      - db
+      - ai_service
+    networks:
+      - agri_network
+
+  # 4. Next.js 14 Frontend Application
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: agri_frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:5000/api/v1
+      - NEXT_PUBLIC_AI_URL=http://localhost:8000/api/v1
+    depends_on:
+      - backend
+    networks:
+      - agri_network
+
+volumes:
+  pgdata:
+
+networks:
+  agri_network:
+    driver: bridge

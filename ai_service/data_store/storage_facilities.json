@@ -1,0 +1,46 @@
+[
+  {
+    "id": "CS-01",
+    "name": "Kolar APMC Mega Cold Hub",
+    "facility_code": "WH-KLR-01",
+    "lat": 13.1385,
+    "lng": 78.132,
+    "total_capacity_kg": 50000.0,
+    "setpoint_temp_celsius": 11.5,
+    "storage_cost_per_kg_day": 1.2,
+    "is_active": true
+  },
+  {
+    "id": "CS-02",
+    "name": "Hoskote Agro Cold Distribution Center",
+    "facility_code": "WH-HSK-02",
+    "lat": 13.0712,
+    "lng": 77.7983,
+    "total_capacity_kg": 40000.0,
+    "setpoint_temp_celsius": 12.0,
+    "storage_cost_per_kg_day": 1.5,
+    "is_active": true
+  },
+  {
+    "id": "CS-03",
+    "name": "Whitefield Perishables Logistics Terminal",
+    "facility_code": "WH-WFD-03",
+    "lat": 12.9698,
+    "lng": 77.75,
+    "total_capacity_kg": 35000.0,
+    "setpoint_temp_celsius": 11.0,
+    "storage_cost_per_kg_day": 1.8,
+    "is_active": true
+  },
+  {
+    "id": "CS-04",
+    "name": "Devanahalli Fresh Agri Logistics Hub",
+    "facility_code": "WH-DVH-04",
+    "lat": 13.245,
+    "lng": 77.712,
+    "total_capacity_kg": 30000.0,
+    "setpoint_temp_celsius": 12.0,
+    "storage_cost_per_kg_day": 1.6,
+    "is_active": true
+  }
+]

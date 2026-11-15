@@ -1,0 +1,110 @@
+[
+  {
+    "id": "VEH-RF-01",
+    "plate": "KA-04-RF-1001",
+    "type": "REEFER_TRUCK",
+    "capacity_kg": 4500.0,
+    "is_refrigerated": true,
+    "cost_per_km": 28.0,
+    "fixed_cost": 1200.0
+  },
+  {
+    "id": "VEH-RF-02",
+    "plate": "KA-04-RF-1002",
+    "type": "REEFER_TRUCK",
+    "capacity_kg": 4500.0,
+    "is_refrigerated": true,
+    "cost_per_km": 28.0,
+    "fixed_cost": 1200.0
+  },
+  {
+    "id": "VEH-RF-03",
+    "plate": "KA-07-RF-2001",
+    "type": "REEFER_TRUCK",
+    "capacity_kg": 4000.0,
+    "is_refrigerated": true,
+    "cost_per_km": 26.0,
+    "fixed_cost": 1100.0
+  },
+  {
+    "id": "VEH-RF-04",
+    "plate": "KA-07-RF-2002",
+    "type": "REEFER_TRUCK",
+    "capacity_kg": 4000.0,
+    "is_refrigerated": true,
+    "cost_per_km": 26.0,
+    "fixed_cost": 1100.0
+  },
+  {
+    "id": "VEH-VN-01",
+    "plate": "KA-04-VN-3001",
+    "type": "VENTILATED_VAN",
+    "capacity_kg": 2500.0,
+    "is_refrigerated": false,
+    "cost_per_km": 18.0,
+    "fixed_cost": 750.0
+  },
+  {
+    "id": "VEH-VN-02",
+    "plate": "KA-04-VN-3002",
+    "type": "VENTILATED_VAN",
+    "capacity_kg": 2500.0,
+    "is_refrigerated": false,
+    "cost_per_km": 18.0,
+    "fixed_cost": 750.0
+  },
+  {
+    "id": "VEH-VN-03",
+    "plate": "KA-07-VN-3003",
+    "type": "VENTILATED_VAN",
+    "capacity_kg": 2500.0,
+    "is_refrigerated": false,
+    "cost_per_km": 18.0,
+    "fixed_cost": 750.0
+  },
+  {
+    "id": "VEH-VN-04",
+    "plate": "KA-07-VN-3004",
+    "type": "VENTILATED_VAN",
+    "capacity_kg": 2200.0,
+    "is_refrigerated": false,
+    "cost_per_km": 16.0,
+    "fixed_cost": 700.0
+  },
+  {
+    "id": "VEH-PK-01",
+    "plate": "KA-07-PK-4001",
+    "type": "STANDARD_PICKUP",
+    "capacity_kg": 1500.0,
+    "is_refrigerated": false,
+    "cost_per_km": 12.0,
+    "fixed_cost": 450.0
+  },
+  {
+    "id": "VEH-PK-02",
+    "plate": "KA-07-PK-4002",
+    "type": "STANDARD_PICKUP",
+    "capacity_kg": 1500.0,
+    "is_refrigerated": false,
+    "cost_per_km": 12.0,
+    "fixed_cost": 450.0
+  },
+  {
+    "id": "VEH-PK-03",
+    "plate": "KA-04-PK-4003",
+    "type": "STANDARD_PICKUP",
+    "capacity_kg": 1200.0,
+    "is_refrigerated": false,
+    "cost_per_km": 10.0,
+    "fixed_cost": 400.0
+  },
+  {
+    "id": "VEH-PK-04",
+    "plate": "KA-04-PK-4004",
+    "type": "STANDARD_PICKUP",
+    "capacity_kg": 1200.0,
+    "is_refrigerated": false,
+    "cost_per_km": 10.0,
+    "fixed_cost": 400.0
+  }
+]

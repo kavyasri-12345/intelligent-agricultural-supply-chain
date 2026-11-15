@@ -1,0 +1,142 @@
+[
+  {
+    "name": "Indiranagar FreshMart Supermarket",
+    "code": "RET-IND-01",
+    "lat": 12.9784,
+    "lng": 77.6408,
+    "daily_avg_demand": 850.0
+  },
+  {
+    "name": "Koramangala GreenGrocers Hub",
+    "code": "RET-KOR-02",
+    "lat": 12.9352,
+    "lng": 77.6245,
+    "daily_avg_demand": 1100.0
+  },
+  {
+    "name": "Whitefield Fresh Produce Mart",
+    "code": "RET-WFD-03",
+    "lat": 12.9698,
+    "lng": 77.75,
+    "daily_avg_demand": 950.0
+  },
+  {
+    "name": "Jayanagar Farmers Retail Union",
+    "code": "RET-JYN-04",
+    "lat": 12.9308,
+    "lng": 77.5838,
+    "daily_avg_demand": 1200.0
+  },
+  {
+    "name": "Malleshwaram Daily Agro Store",
+    "code": "RET-MLW-05",
+    "lat": 13.0031,
+    "lng": 77.5643,
+    "daily_avg_demand": 750.0
+  },
+  {
+    "name": "HSR Layout Organic Basket",
+    "code": "RET-HSR-06",
+    "lat": 12.9121,
+    "lng": 77.6446,
+    "daily_avg_demand": 900.0
+  },
+  {
+    "name": "Yelahanka Perishable Distribution",
+    "code": "RET-YLH-07",
+    "lat": 13.1007,
+    "lng": 77.5963,
+    "daily_avg_demand": 650.0
+  },
+  {
+    "name": "Electronic City Agro Mart",
+    "code": "RET-ELC-08",
+    "lat": 12.8452,
+    "lng": 77.6602,
+    "daily_avg_demand": 800.0
+  },
+  {
+    "name": "Marathahalli Fresh Express",
+    "code": "RET-MRT-09",
+    "lat": 12.9591,
+    "lng": 77.6974,
+    "daily_avg_demand": 1050.0
+  },
+  {
+    "name": "BTM Layout Urban Grocery",
+    "code": "RET-BTM-10",
+    "lat": 12.9166,
+    "lng": 77.6101,
+    "daily_avg_demand": 700.0
+  },
+  {
+    "name": "Hebbal Fresh Food Depot",
+    "code": "RET-HBL-11",
+    "lat": 13.0358,
+    "lng": 77.597,
+    "daily_avg_demand": 600.0
+  },
+  {
+    "name": "Rajajinagar Produce Bazaar",
+    "code": "RET-RJN-12",
+    "lat": 12.9982,
+    "lng": 77.553,
+    "daily_avg_demand": 850.0
+  },
+  {
+    "name": "Sarjapur FarmToFork Outlet",
+    "code": "RET-SJP-13",
+    "lat": 12.8601,
+    "lng": 77.7865,
+    "daily_avg_demand": 950.0
+  },
+  {
+    "name": "Banashankari Wholesale Fruits & Veg",
+    "code": "RET-BSK-14",
+    "lat": 12.9255,
+    "lng": 77.5468,
+    "daily_avg_demand": 1150.0
+  },
+  {
+    "name": "Kalyan Nagar Veggie Hub",
+    "code": "RET-KLN-15",
+    "lat": 13.0238,
+    "lng": 77.6433,
+    "daily_avg_demand": 550.0
+  },
+  {
+    "name": "Bellandur EcoGrocers",
+    "code": "RET-BLR-16",
+    "lat": 12.9304,
+    "lng": 77.6784,
+    "daily_avg_demand": 800.0
+  },
+  {
+    "name": "Basavanagudi Heritage Market",
+    "code": "RET-BSG-17",
+    "lat": 12.9422,
+    "lng": 77.5756,
+    "daily_avg_demand": 750.0
+  },
+  {
+    "name": "RT Nagar Daily Mart",
+    "code": "RET-RTN-18",
+    "lat": 13.0247,
+    "lng": 77.5948,
+    "daily_avg_demand": 500.0
+  },
+  {
+    "name": "KR Puram Fresh Railhead Store",
+    "code": "RET-KRP-19",
+    "lat": 13.0075,
+    "lng": 77.6959,
+    "daily_avg_demand": 900.0
+  },
+  {
+    "name": "JP Nagar Premium Organics",
+    "code": "RET-JPN-20",
+    "lat": 12.9063,
+    "lng": 77.5857,
+    "daily_avg_demand": 700.0
+  }
+]

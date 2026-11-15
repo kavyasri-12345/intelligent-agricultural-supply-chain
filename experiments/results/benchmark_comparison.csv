@@ -1,0 +1,17 @@
+Scenario,Model_Framework,Total_Cost_INR,Spoilage_Cost_INR,Transport_Cost_INR,Storage_Cost_INR,Spoilage_Rate_Pct,Demand_Fulfillment_Pct,Total_Distance_KM
+NORMAL,Baseline A (Greedy Nearest Allocation),189734.39,167330.39,17329.0,0.0,7.27,85.5,402.7
+NORMAL,Baseline B (Cost-Only Optimization),205356.21,189942.61,12263.6,0.0,8.25,91.0,302.9
+NORMAL,Baseline C (No Shelf-Life Constraints),155367.33,140195.73,13596.6,0.0,6.09,95.5,331.9
+NORMAL,Proposed (Spoilage-Aware Integrated Optimization),103778.86,90448.86,13330.0,0.0,3.93,100.0,322.19
+HEATWAVE,Baseline A (Greedy Nearest Allocation),886169.62,863765.62,17329.0,0.0,38.09,85.5,402.7
+HEATWAVE,Baseline B (Cost-Only Optimization),1131110.85,1115697.25,12263.6,0.0,49.2,91.0,302.9
+HEATWAVE,Baseline C (No Shelf-Life Constraints),716981.16,701809.56,13596.6,0.0,30.95,95.5,331.9
+HEATWAVE,Proposed (Spoilage-Aware Integrated Optimization),373232.34,359902.34,13330.0,0.0,15.87,100.0,322.19
+DEMAND_SPIKE,Baseline A (Greedy Nearest Allocation),186575.0,164171.0,17329.0,0.0,7.46,85.5,402.7
+DEMAND_SPIKE,Baseline B (Cost-Only Optimization),201769.87,186356.27,12263.6,0.0,8.46,91.0,302.9
+DEMAND_SPIKE,Baseline C (No Shelf-Life Constraints),152720.27,137548.67,13596.6,0.0,6.25,95.5,331.9
+DEMAND_SPIKE,Proposed (Spoilage-Aware Integrated Optimization),102071.08,88741.08,13330.0,0.0,4.03,100.0,322.19
+FLEET_OUTAGE,Baseline A (Greedy Nearest Allocation),190508.31,166946.92,18486.39,0.0,7.46,85.5,537.6
+FLEET_OUTAGE,Baseline B (Cost-Only Optimization),205739.99,189507.32,13082.68,0.0,8.46,91.0,404.2
+FLEET_OUTAGE,Baseline C (No Shelf-Life Constraints),155954.16,139874.45,14504.71,0.0,6.25,95.5,443.0
+FLEET_OUTAGE,Proposed (Spoilage-Aware Integrated Optimization),104461.88,90241.58,14220.3,0.0,4.03,100.0,430.05

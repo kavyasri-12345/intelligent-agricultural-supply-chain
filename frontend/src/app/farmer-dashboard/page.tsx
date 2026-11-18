@@ -59,41 +59,44 @@ export default function FarmerDashboardPage() {
   const fetchFarmerData = async () => {
     setLoading(true);
     try {
-      const res = await fetch(getBackendUrl('/api/v1/spoilage/batches/active'));
+      const res = await fetch(getBackendUrl('/api/v1/batches'));
       if (res.ok) {
         const data = await res.json();
-        setBatches(data || []);
-      } else {
-        // Sample active batches for verified demonstration
-        setBatches([
-          {
-            batch_id: 'BAT-2026-0891',
-            crop: 'Tomato',
-            farm_id: 'FARM-001',
-            quantity_kg: 2400,
-            harvest_age_hours: 3.5,
-            initial_firmness: 0.95,
-            initial_brix: 4.8,
-            remaining_shelf_life_hours: 312.4,
-            spoilage_risk_category: 'LOW',
-            is_urgent_fefo: false,
-            status: 'AT_COLLECTION_HUB'
-          },
-          {
-            batch_id: 'BAT-2026-0842',
-            crop: 'Tomato',
-            farm_id: 'FARM-001',
-            quantity_kg: 1850,
-            harvest_age_hours: 14.2,
-            initial_firmness: 0.88,
-            initial_brix: 4.6,
-            remaining_shelf_life_hours: 240.1,
-            spoilage_risk_category: 'MEDIUM',
-            is_urgent_fefo: true,
-            status: 'IN_TRANSIT_TO_COLD_HUB'
-          }
-        ]);
+        const list = Array.isArray(data) ? data : (data.batches || []);
+        if (list.length > 0) {
+          setBatches(list);
+          return;
+        }
       }
+      // Sample active batches for verified demonstration
+      setBatches([
+        {
+          batch_id: 'BAT-2026-0891',
+          crop: 'Tomato',
+          farm_id: 'FARM-001',
+          quantity_kg: 2400,
+          harvest_age_hours: 3.5,
+          initial_firmness: 0.95,
+          initial_brix: 4.8,
+          remaining_shelf_life_hours: 312.4,
+          spoilage_risk_category: 'LOW',
+          is_urgent_fefo: false,
+          status: 'AT_COLLECTION_HUB'
+        },
+        {
+          batch_id: 'BAT-2026-0842',
+          crop: 'Tomato',
+          farm_id: 'FARM-001',
+          quantity_kg: 1850,
+          harvest_age_hours: 14.2,
+          initial_firmness: 0.88,
+          initial_brix: 4.6,
+          remaining_shelf_life_hours: 240.1,
+          spoilage_risk_category: 'MEDIUM',
+          is_urgent_fefo: true,
+          status: 'IN_TRANSIT_TO_COLD_HUB'
+        }
+      ]);
     } catch (e) {
       console.warn('Farmer batches fetch fallback:', e);
     } finally {
@@ -109,25 +112,30 @@ export default function FarmerDashboardPage() {
 
     try {
       const token = localStorage.getItem('agri_jwt_token');
-      const res = await fetch(getBackendUrl('/api/v1/farms/harvest'), {
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json'
+      };
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+
+      const res = await fetch(getBackendUrl('/api/v1/batches'), {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token || ''}`
-        },
+        headers,
         body: JSON.stringify(newBatch)
       });
 
       if (!res.ok) {
         const err = await res.json().catch(() => ({}));
-        throw new Error(err.error || 'Failed to submit harvest batch');
+        throw new Error(err.error || err.message || `Failed to submit harvest batch (HTTP ${res.status})`);
       }
 
       const created = await res.json();
-      setSuccessMsg(`Harvest Batch ${created.batch_id || 'BAT-SUCCESS'} registered! Predicted Shelf-Life: ${created.remaining_shelf_life_hours || '310.0'} hrs.`);
+      const batchData = created.batch || created;
+      setSuccessMsg(`Harvest Batch ${batchData.batch_id || 'BAT-SUCCESS'} registered! Predicted Shelf-Life: ${batchData.remaining_shelf_life_hours || '310.0'} hrs.`);
       
       // Prepend to active list
-      setBatches(prev => [created, ...prev]);
+      setBatches(prev => [batchData, ...prev]);
 
       // Reset form
       setNewBatch({

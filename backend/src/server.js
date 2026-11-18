@@ -76,6 +76,7 @@ app.use((req, res, next) => {
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/farms', farmRoutes);
 app.use('/api/v1/batches', batchRoutes);
+app.use('/api/v1/spoilage', batchRoutes);
 app.use('/api/v1/retailers', retailerRoutes);
 app.use('/api/v1/storage', storageRoutes);
 app.use('/api/v1/transport', transportRoutes);

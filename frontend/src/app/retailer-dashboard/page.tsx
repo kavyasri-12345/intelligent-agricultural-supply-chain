@@ -122,13 +122,14 @@ export default function RetailerDashboardPage() {
 
       if (!res.ok) {
         const err = await res.json().catch(() => ({}));
-        throw new Error(err.error || 'Failed to submit order');
+        throw new Error(err.error || err.message || `Failed to submit order (HTTP ${res.status})`);
       }
 
       const created = await res.json();
-      setSuccessMsg(`Order ${created.id || 'ORD-SUCCESS'} submitted successfully! Fulfillment scheduled for ${newOrder.delivery_window}.`);
+      const orderData = created.order || created;
+      setSuccessMsg(`Order ${orderData.id || 'ORD-SUCCESS'} submitted successfully! Fulfillment scheduled for ${newOrder.delivery_window}.`);
 
-      setOrders(prev => [created, ...prev]);
+      setOrders(prev => [orderData, ...prev]);
 
       setNewOrder({
         retailer_code: 'RET-01',

@@ -61,12 +61,12 @@ export default function DistributorDashboardPage() {
     try {
       const [storageRes, fleetRes] = await Promise.all([
         fetch(getBackendUrl('/api/v1/storage')),
-        fetch(getBackendUrl('/api/v1/transport/fleet'))
+        fetch(getBackendUrl('/api/v1/transport/vehicles'))
       ]);
 
       if (storageRes.ok) {
         const s = await storageRes.json();
-        setFacilities(s);
+        setFacilities(Array.isArray(s) ? s : []);
       } else {
         setFacilities([
           { id: 'WH-01', name: 'Hoskote Central Cold Hub', total_capacity_kg: 50000, current_utilization_kg: 34500, setpoint_temp_celsius: 4.0 },
@@ -78,7 +78,10 @@ export default function DistributorDashboardPage() {
 
       if (fleetRes.ok) {
         const f = await fleetRes.json();
-        setVehicles(f.vehicles || []);
+        const vList = Array.isArray(f) ? f : (f.vehicles || []);
+        if (vList.length > 0) {
+          setVehicles(vList);
+        }
       } else {
         setVehicles([
           { id: 'VEH-RF-01', type: 'Refrigerated 3.5T', capacity_kg: 3500, current_temp_c: 4.2, status: 'EN_ROUTE', eta_next_stop: '18 mins' },

@@ -26,6 +26,7 @@ import {
   Legend
 } from 'recharts';
 import { getAiUrl } from '@/lib/api';
+import AuthGuard from '@/components/AuthGuard';
 
 export default function SupplyForecastingPage() {
   const [horizon, setHorizon] = useState<number>(7);
@@ -73,7 +74,8 @@ export default function SupplyForecastingPage() {
   })) || [];
 
   return (
-    <div className="flex-1 flex flex-col min-h-screen bg-slate-950">
+    <AuthGuard allowedRoles={['FARMER', 'ADMIN', 'PLANNER']}>
+      <div className="flex-1 flex flex-col min-h-screen bg-slate-950">
       <Navbar 
         title="Agricultural Supply Forecasting Engine" 
         subtitle="Multi-Horizon Autoregressive Trees, Sequence Deep Learning & Prediction Intervals" 
@@ -273,5 +275,6 @@ export default function SupplyForecastingPage() {
         </div>
       </main>
     </div>
+    </AuthGuard>
   );
 }

@@ -26,6 +26,7 @@ import {
   ResponsiveContainer 
 } from 'recharts';
 import { getBackendUrl } from '@/lib/api';
+import AuthGuard from '@/components/AuthGuard';
 
 export default function SpoilageIntelligencePage() {
   const [batches, setBatches] = useState<any[]>([]);
@@ -114,7 +115,8 @@ export default function SpoilageIntelligencePage() {
   const urgentBatches = batches.filter(b => b.spoilage_risk_category === 'HIGH' || b.spoilage_risk_category === 'CRITICAL');
 
   return (
-    <div className="flex-1 flex flex-col min-h-screen bg-slate-950">
+    <AuthGuard allowedRoles={['FARMER', 'DISTRIBUTOR', 'RETAILER', 'STORAGE_MANAGER', 'TRANSPORT_MANAGER', 'ADMIN', 'PLANNER']}>
+      <div className="flex-1 flex flex-col min-h-screen bg-slate-950">
       <Navbar 
         title="Deep Learning Spoilage Engine & Arrhenius Shelf Life" 
         subtitle="Batch-Level Biological Deterioration Tracking, FEFO Priority Ordering & IoT Sensor Telemetry" 
@@ -430,5 +432,6 @@ export default function SpoilageIntelligencePage() {
         )}
       </main>
     </div>
+    </AuthGuard>
   );
 }

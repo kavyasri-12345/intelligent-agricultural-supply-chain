@@ -37,12 +37,41 @@ const register = (req, res) => {
     return res.status(400).json({ error: 'Email, password, and full name are required.' });
   }
 
-  const existing = dataStore.findUserByEmail(email);
-  if (existing) {
-    return res.status(400).json({ error: 'User with this email already exists.' });
+  // Email format validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email.trim())) {
+    return res.status(400).json({ error: 'Please provide a valid email address.' });
   }
 
-  const newUser = dataStore.createUser({ email, password, fullName, role, phone });
+  // Password length validation
+  if (password.length < 6) {
+    return res.status(400).json({ error: 'Password must be at least 6 characters long.' });
+  }
+
+  // SECURITY: Prevent public signup for ADMIN role
+  const normalizedRole = (role || 'FARMER').trim().toUpperCase();
+  if (normalizedRole === 'ADMIN') {
+    return res.status(403).json({
+      error: 'Security restriction: Admin accounts cannot be created through public signup. Only an authorized administrator can provision admin accounts.'
+    });
+  }
+
+  // Valid public registration roles
+  const validPublicRoles = ['FARMER', 'DISTRIBUTOR', 'RETAILER', 'STORAGE_MANAGER', 'TRANSPORT_MANAGER'];
+  const assignedRole = validPublicRoles.includes(normalizedRole) ? normalizedRole : 'FARMER';
+
+  const existing = dataStore.findUserByEmail(email.trim());
+  if (existing) {
+    return res.status(400).json({ error: 'A user with this email address already exists. Please sign in.' });
+  }
+
+  const newUser = dataStore.createUser({
+    email: email.trim(),
+    password,
+    fullName: fullName.trim(),
+    role: assignedRole,
+    phone: phone ? phone.trim() : ''
+  });
   const token = generateToken(newUser);
 
   return res.status(201).json({
@@ -52,7 +81,8 @@ const register = (req, res) => {
       id: newUser.id,
       email: newUser.email,
       fullName: newUser.fullName,
-      role: newUser.role
+      role: newUser.role,
+      phone: newUser.phone
     }
   });
 };

@@ -64,6 +64,14 @@ class DataStore {
         phone: '+91-9845044556'
       },
       {
+        id: 'usr-dist-07',
+        email: 'distributor@agri.org',
+        passwordHash,
+        fullName: 'Kiran Patel (Regional Agri Distributor)',
+        role: 'DISTRIBUTOR',
+        phone: '+91-9845077889'
+      },
+      {
         id: 'usr-store-05',
         email: 'storage@agri.org',
         passwordHash,

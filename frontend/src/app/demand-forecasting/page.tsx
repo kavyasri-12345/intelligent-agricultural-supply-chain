@@ -26,6 +26,7 @@ import {
   Legend
 } from 'recharts';
 import { getAiUrl } from '@/lib/api';
+import AuthGuard from '@/components/AuthGuard';
 
 export default function DemandForecastingPage() {
   const [horizon, setHorizon] = useState<number>(7);
@@ -78,7 +79,8 @@ export default function DemandForecastingPage() {
   });
 
   return (
-    <div className="flex-1 flex flex-col min-h-screen bg-slate-950">
+    <AuthGuard allowedRoles={['RETAILER', 'ADMIN', 'PLANNER']}>
+      <div className="flex-1 flex flex-col min-h-screen bg-slate-950">
       <Navbar 
         title="Urban Retailer Demand Intelligence" 
         subtitle="Store-Level Replenishment Forecasting, Weekend Surge Detection & Stockout Guardrails" 
@@ -209,5 +211,6 @@ export default function DemandForecastingPage() {
         </div>
       </main>
     </div>
+    </AuthGuard>
   );
 }

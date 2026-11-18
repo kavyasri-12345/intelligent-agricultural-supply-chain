@@ -13,6 +13,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { getBackendUrl } from '@/lib/api';
+import AuthGuard from '@/components/AuthGuard';
 
 export default function ColdStoragePage() {
   const [facilities, setFacilities] = useState<any[]>([]);
@@ -62,7 +63,8 @@ export default function ColdStoragePage() {
   const totalOccupied = totalCap * 0.684; // current operational average
 
   return (
-    <div className="flex-1 flex flex-col min-h-screen bg-slate-950">
+    <AuthGuard allowedRoles={['DISTRIBUTOR', 'STORAGE_MANAGER', 'TRANSPORT_MANAGER', 'ADMIN', 'PLANNER']}>
+      <div className="flex-1 flex flex-col min-h-screen bg-slate-950">
       <Navbar 
         title="Intelligent Cold-Chain Buffer Facilities" 
         subtitle="Multi-Facility Bay Occupancy, Climate Control Setpoints & CP-SAT Inventory Placement" 
@@ -199,5 +201,6 @@ export default function ColdStoragePage() {
         )}
       </main>
     </div>
+    </AuthGuard>
   );
 }

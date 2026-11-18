@@ -15,6 +15,7 @@ import {
   Fuel
 } from 'lucide-react';
 import { getBackendUrl, getAiUrl } from '@/lib/api';
+import AuthGuard from '@/components/AuthGuard';
 
 export default function TransportationPage() {
   const [vehicles, setVehicles] = useState<any[]>([]);
@@ -48,7 +49,8 @@ export default function TransportationPage() {
   }, []);
 
   return (
-    <div className="flex-1 flex flex-col min-h-screen bg-slate-950">
+    <AuthGuard allowedRoles={['DISTRIBUTOR', 'TRANSPORT_MANAGER', 'ADMIN', 'PLANNER']}>
+      <div className="flex-1 flex flex-col min-h-screen bg-slate-950">
       <Navbar 
         title="Fleet Logistics & VRPTW Route Dispatch" 
         subtitle="Capacitated Vehicle Routing with Time Windows, Cold-Chain Compartments & Delivery Timelines" 
@@ -176,5 +178,6 @@ export default function TransportationPage() {
         </div>
       </main>
     </div>
+    </AuthGuard>
   );
 }

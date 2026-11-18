@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Sidebar from "@/components/Sidebar";
+import AppShell from "@/components/AppShell";
 
 export const metadata: Metadata = {
   title: "AgriOptima - Spoilage-Aware Agricultural Supply Chain Platform",
@@ -14,11 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-slate-950 text-slate-100 flex min-h-screen">
-        <Sidebar />
-        <div className="flex-1 ml-64 flex flex-col min-h-screen overflow-x-hidden">
+      <body className="bg-slate-950 text-slate-100 min-h-screen">
+        <AppShell>
           {children}
-        </div>
+        </AppShell>
       </body>
     </html>
   );

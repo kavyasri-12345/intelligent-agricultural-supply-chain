@@ -16,6 +16,7 @@ import {
   RefreshCw
 } from 'lucide-react';
 import { getBackendUrl } from '@/lib/api';
+import AuthGuard from '@/components/AuthGuard';
 
 export default function FarmManagementPage() {
   const [farms, setFarms] = useState<any[]>([]);
@@ -99,7 +100,8 @@ export default function FarmManagementPage() {
   ];
 
   return (
-    <div className="flex-1 flex flex-col min-h-screen bg-slate-950">
+    <AuthGuard allowedRoles={['FARMER', 'ADMIN', 'PLANNER']}>
+      <div className="flex-1 flex flex-col min-h-screen bg-slate-950">
       <Navbar 
         title="Intelligent Farmer Clustering & Spatial Consolidation" 
         subtitle="Unsupervised K-Means & DBSCAN Partitioning with Physical Feeder Hub Identification" 
@@ -285,5 +287,6 @@ export default function FarmManagementPage() {
         )}
       </main>
     </div>
+    </AuthGuard>
   );
 }

@@ -13,6 +13,7 @@ import {
   MapPin
 } from 'lucide-react';
 import { getBackendUrl } from '@/lib/api';
+import AuthGuard from '@/components/AuthGuard';
 
 export default function RetailerManagementPage() {
   const [retailers, setRetailers] = useState<any[]>([]);
@@ -62,7 +63,8 @@ export default function RetailerManagementPage() {
   };
 
   return (
-    <div className="flex-1 flex flex-col min-h-screen bg-slate-950">
+    <AuthGuard allowedRoles={['RETAILER', 'ADMIN', 'PLANNER']}>
+      <div className="flex-1 flex flex-col min-h-screen bg-slate-950">
       <Navbar 
         title="Urban Retail Distribution Network" 
         subtitle="Daily Replenishment Orders, Delivery Window Schedules & Demand Fulfillment Tracking" 
@@ -203,5 +205,6 @@ export default function RetailerManagementPage() {
         )}
       </main>
     </div>
+    </AuthGuard>
   );
 }

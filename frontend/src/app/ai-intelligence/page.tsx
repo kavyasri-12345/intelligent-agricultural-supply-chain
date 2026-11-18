@@ -24,6 +24,7 @@ import {
   ResponsiveContainer 
 } from 'recharts';
 import { getBackendUrl } from '@/lib/api';
+import AuthGuard from '@/components/AuthGuard';
 
 export default function AIIntelligencePage() {
   const [metrics, setMetrics] = useState<any>(null);
@@ -64,7 +65,8 @@ export default function AIIntelligencePage() {
   ];
 
   return (
-    <div className="flex-1 flex flex-col min-h-screen bg-slate-950">
+    <AuthGuard allowedRoles={['ADMIN', 'PLANNER']}>
+      <div className="flex-1 flex flex-col min-h-screen bg-slate-950">
       <Navbar 
         title="AI Intelligence & Explainability Center (XAI)" 
         subtitle="Empirical Model Benchmarks, SHAP Feature Importance & Deep Learning Validation Reports" 
@@ -225,5 +227,6 @@ export default function AIIntelligencePage() {
         </div>
       </main>
     </div>
+    </AuthGuard>
   );
 }

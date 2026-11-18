@@ -30,6 +30,7 @@ import {
   Legend
 } from 'recharts';
 import { getBackendUrl } from '@/lib/api';
+import AuthGuard from '@/components/AuthGuard';
 
 export default function OptimizationCenterPage() {
   const [scenario, setScenario] = useState<string>('NORMAL');
@@ -112,7 +113,8 @@ export default function OptimizationCenterPage() {
   })) || [];
 
   return (
-    <div className="flex-1 flex flex-col min-h-screen bg-slate-950">
+    <AuthGuard allowedRoles={['DISTRIBUTOR', 'ADMIN', 'PLANNER']}>
+      <div className="flex-1 flex flex-col min-h-screen bg-slate-950">
       <Navbar 
         title="Multi-Objective Operations Research Solver (CP-SAT)" 
         subtitle="End-to-End Decision Optimization: Joint Spoilage, Transit, Storage & Demand Satisfaction" 
@@ -357,5 +359,6 @@ export default function OptimizationCenterPage() {
         </div>
       </main>
     </div>
+    </AuthGuard>
   );
 }

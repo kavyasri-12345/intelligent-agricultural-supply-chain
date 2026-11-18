@@ -56,9 +56,9 @@ export default function TransportationPage() {
         subtitle="Capacitated Vehicle Routing with Time Windows, Cold-Chain Compartments & Delivery Timelines" 
       />
 
-      <main className="flex-1 p-8 space-y-8 max-w-7xl mx-auto w-full">
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 max-w-7xl mx-auto w-full">
         {/* KPI Metric Summary */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <KPICard
             title="Active Fleet Size"
             value={vehicles.length}

@@ -16,7 +16,7 @@ import {
   CheckCircle2, 
   AlertTriangle,
   ArrowUpRight,
-  Sparkles,
+  Sliders,
   RefreshCw,
   ShieldCheck,
   Users
@@ -161,15 +161,15 @@ export default function AdminDashboardPage() {
           subtitle="Real-time Deep Learning, Spoilage Tracking & OR-Tools Mathematical Optimization"
         />
 
-        <main className="flex-1 p-8 space-y-8 max-w-7xl mx-auto w-full">
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 max-w-7xl mx-auto w-full">
           {/* Top Action Bar */}
-          <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-slate-800/80">
             <div>
               <div className="flex items-center gap-2">
                 <span className="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-xs font-bold">
                   ADMINISTRATIVE ACCESS
                 </span>
-                <h3 className="text-xl font-bold text-white tracking-tight">Executive Performance Overview</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">Executive Performance Overview</h3>
               </div>
               <p className="text-xs text-slate-400 mt-0.5">
                 Current operational horizon: 7 Days (Hourly event-driven dispatch) | System-wide Coordination
@@ -185,16 +185,16 @@ export default function AdminDashboardPage() {
               </button>
               <Link
                 href="/optimization-center"
-                className="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs flex items-center space-x-2 transition shadow-lg shadow-emerald-950/40"
+                className="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-semibold text-xs flex items-center space-x-2 transition shadow-md"
               >
-                <Sparkles className="w-4 h-4" />
-                <span>Run Integrated Solver</span>
+                <Sliders className="w-4 h-4" />
+                <span>Run Operations Solver</span>
               </Link>
             </div>
           </div>
 
           {/* 10 Core KPI Metric Cards Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
             <KPICard
               title="Total Farms"
               value={summary?.total_farms || 100}
@@ -339,13 +339,13 @@ export default function AdminDashboardPage() {
           </div>
 
           {/* Analytical Trends: 7-Day Rolling Supply vs Demand vs Spoilage */}
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
-            <div className="flex items-center justify-between mb-6">
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
               <div>
                 <h4 className="text-sm font-bold text-white tracking-tight">7-Day Supply vs Demand Coordination Forecast</h4>
                 <p className="text-xs text-slate-400">Multi-horizon prediction balance verifying network stability and post-harvest spoilage mitigation</p>
               </div>
-              <div className="flex items-center space-x-4 text-xs">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs">
                 <div className="flex items-center space-x-1.5">
                   <span className="w-3 h-3 rounded-full bg-emerald-500 inline-block" />
                   <span className="text-slate-300">Harvest Supply (kg)</span>

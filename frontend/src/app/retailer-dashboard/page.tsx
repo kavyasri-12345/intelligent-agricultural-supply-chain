@@ -13,7 +13,6 @@ import {
   PlusCircle, 
   AlertTriangle, 
   RefreshCw, 
-  Sparkles, 
   ShieldCheck,
   PackageCheck,
   ArrowUpRight
@@ -152,9 +151,9 @@ export default function RetailerDashboardPage() {
           subtitle="Daily produce ordering, LSTM demand forecasting, and cold-chain arrival tracking"
         />
 
-        <main className="flex-1 p-8 space-y-8 max-w-7xl mx-auto w-full">
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 max-w-7xl mx-auto w-full">
           {/* Header Bar */}
-          <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-slate-800/80">
             <div>
               <div className="flex items-center space-x-2">
                 <span className="px-2.5 py-0.5 rounded-full bg-violet-500/10 border border-violet-500/30 text-violet-400 font-mono text-xs font-bold flex items-center gap-1">
@@ -163,7 +162,7 @@ export default function RetailerDashboardPage() {
                 </span>
                 <span className="text-xs text-slate-400">| Supermarket Outlet: Indiranagar FreshMart (RET-01)</span>
               </div>
-              <h3 className="text-xl font-bold text-white tracking-tight mt-1">
+              <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight mt-1">
                 Store Operations: {currentUser?.fullName || 'Retail Partner'}
               </h3>
               <p className="text-xs text-slate-400 mt-0.5">
@@ -181,16 +180,16 @@ export default function RetailerDashboardPage() {
               </button>
               <Link
                 href="/demand-forecasting"
-                className="px-4 py-2 rounded-lg bg-violet-600 hover:bg-violet-500 text-white font-bold text-xs flex items-center space-x-2 transition shadow-lg shadow-violet-950/40"
+                className="px-4 py-2 rounded-lg bg-violet-600 hover:bg-violet-500 text-white font-semibold text-xs flex items-center space-x-2 transition shadow-md"
               >
-                <Sparkles className="w-4 h-4" />
+                <TrendingUp className="w-4 h-4" />
                 <span>Demand Forecast Model</span>
               </Link>
             </div>
           </div>
 
           {/* Retailer Metric Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
             <KPICard
               title="Predicted Demand"
               value="2,400 kg"
@@ -325,7 +324,7 @@ export default function RetailerDashboardPage() {
             </div>
 
             {/* Right: Active Store Orders */}
-            <div className="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-xl p-6 flex flex-col justify-between">
+            <div className="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-6 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
                   <div>

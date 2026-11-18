@@ -70,9 +70,9 @@ export default function RetailerManagementPage() {
         subtitle="Daily Replenishment Orders, Delivery Window Schedules & Demand Fulfillment Tracking" 
       />
 
-      <main className="flex-1 p-8 space-y-8 max-w-7xl mx-auto w-full">
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 max-w-7xl mx-auto w-full">
         {/* Top Summary */}
-        <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-800">
           <div>
             <h3 className="text-xl font-bold text-white tracking-tight">Bengaluru Retail Outlets</h3>
             <p className="text-xs text-slate-400">20 Supermarket nodes synchronized with regional cold-chain delivery hubs</p>

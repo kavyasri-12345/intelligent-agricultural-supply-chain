@@ -81,10 +81,10 @@ export default function SupplyForecastingPage() {
         subtitle="Multi-Horizon Autoregressive Trees, Sequence Deep Learning & Prediction Intervals" 
       />
 
-      <main className="flex-1 p-8 space-y-8 max-w-7xl mx-auto w-full">
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 max-w-7xl mx-auto w-full">
         {/* Controls Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-4 p-5 bg-slate-900 border border-slate-800 rounded-xl">
-          <div className="flex items-center space-x-6">
+        <div className="flex flex-wrap items-center justify-between gap-4 p-4 sm:p-5 bg-slate-900 border border-slate-800 rounded-xl">
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
             {/* Horizon Selector */}
             <div>
               <label className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block mb-1.5">
@@ -187,7 +187,7 @@ export default function SupplyForecastingPage() {
           <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-3">
             Rolling-Origin Model Evaluation Metrics (Kolar Test Partition)
           </h4>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {forecastData?.model_metrics && Object.entries(forecastData.model_metrics).map(([mName, mVals]: [string, any]) => (
               <div 
                 key={mName}

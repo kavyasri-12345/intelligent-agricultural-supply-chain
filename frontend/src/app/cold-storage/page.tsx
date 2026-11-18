@@ -70,9 +70,9 @@ export default function ColdStoragePage() {
         subtitle="Multi-Facility Bay Occupancy, Climate Control Setpoints & CP-SAT Inventory Placement" 
       />
 
-      <main className="flex-1 p-8 space-y-8 max-w-7xl mx-auto w-full">
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 max-w-7xl mx-auto w-full">
         {/* KPI Metric Summary */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <KPICard
             title="Total Network Capacity"
             value={`${(totalCap / 1000).toFixed(0)} MT`}
@@ -105,7 +105,7 @@ export default function ColdStoragePage() {
         </div>
 
         {/* Facilities Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {facilities.map((fac) => {
             const cap = fac.total_capacity_kg;
             const occupied = cap * 0.68;
@@ -114,7 +114,7 @@ export default function ColdStoragePage() {
             return (
               <div 
                 key={fac.id} 
-                className={`p-6 rounded-xl border transition-all ${
+                className={`p-4 sm:p-6 rounded-xl border transition-all ${
                   selectedFacility?.id === fac.id 
                     ? 'bg-slate-900 border-blue-500/50 ring-1 ring-blue-500/20' 
                     : 'bg-slate-900 border-slate-800 hover:border-slate-700'
@@ -168,7 +168,7 @@ export default function ColdStoragePage() {
 
         {/* Setpoint Temperature Adjustment Panel */}
         {selectedFacility && (
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 flex flex-wrap items-center justify-between gap-4">
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-6 flex flex-wrap items-center justify-between gap-4">
             <div>
               <h4 className="text-sm font-bold text-white flex items-center gap-2">
                 <Settings className="w-4 h-4 text-emerald-400" />

@@ -107,7 +107,7 @@ export default function SpoilageIntelligencePage() {
       case 'LOW': return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30';
       case 'MEDIUM': return 'bg-blue-500/10 text-blue-400 border-blue-500/30';
       case 'HIGH': return 'bg-amber-500/10 text-amber-400 border-amber-500/30';
-      case 'CRITICAL': return 'bg-rose-500/10 text-rose-400 border-rose-500/30 animate-pulse';
+      case 'CRITICAL': return 'bg-rose-500/10 text-rose-400 border-rose-500/30';
       default: return 'bg-slate-800 text-slate-400';
     }
   };
@@ -122,12 +122,12 @@ export default function SpoilageIntelligencePage() {
         subtitle="Batch-Level Biological Deterioration Tracking, FEFO Priority Ordering & IoT Sensor Telemetry" 
       />
 
-      <main className="flex-1 p-8 space-y-8 max-w-7xl mx-auto w-full">
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 max-w-7xl mx-auto w-full">
         {/* Scenario Controls & Actions */}
-        <div className="flex flex-wrap items-center justify-between gap-4 p-5 bg-slate-900 border border-slate-800 rounded-xl">
+        <div className="flex flex-wrap items-center justify-between gap-4 p-4 sm:p-5 bg-slate-900 border border-slate-800 rounded-xl">
           <div className="flex items-center space-x-4">
             <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Test Scenario:</span>
-            <div className="flex items-center space-x-1.5 bg-slate-950 p-1 rounded-lg border border-slate-800">
+            <div className="flex flex-wrap items-center gap-1.5 bg-slate-950 p-1 rounded-lg border border-slate-800">
               {[
                 { id: 'NORMAL', label: 'Normal Operations' },
                 { id: 'HEATWAVE', label: 'Heatwave (+6°C Ambient)' },
@@ -159,7 +159,7 @@ export default function SpoilageIntelligencePage() {
         </div>
 
         {/* Top KPI Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <KPICard
             title="Monitored Batches"
             value={batches.length}

@@ -162,9 +162,9 @@ export default function FarmerDashboardPage() {
           subtitle="Harvest batch logging, real-time spoilage shelf-life prediction, and spatial cluster coordination"
         />
 
-        <main className="flex-1 p-8 space-y-8 max-w-7xl mx-auto w-full">
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 max-w-7xl mx-auto w-full">
           {/* Farmer Header Greeting */}
-          <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-slate-800/80">
             <div>
               <div className="flex items-center space-x-2">
                 <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-xs font-bold flex items-center gap-1">
@@ -173,7 +173,7 @@ export default function FarmerDashboardPage() {
                 </span>
                 <span className="text-xs text-slate-400">| Farm ID: FARM-001 (Kolar Taluk)</span>
               </div>
-              <h3 className="text-xl font-bold text-white tracking-tight mt-1">
+              <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight mt-1">
                 Welcome back, {currentUser?.fullName || 'Producer Partner'}
               </h3>
               <p className="text-xs text-slate-400 mt-0.5">
@@ -184,7 +184,7 @@ export default function FarmerDashboardPage() {
             <div className="flex items-center space-x-3">
               <button
                 onClick={fetchFarmerData}
-                className="px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-700 text-xs font-medium text-slate-300 hover:text-white flex items-center space-x-2 transition"
+                className="w-full sm:w-auto px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-700 text-xs font-medium text-slate-300 hover:text-white flex items-center justify-center space-x-2 transition"
               >
                 <RefreshCw className="w-3.5 h-3.5" />
                 <span>Refresh Batches</span>
@@ -193,7 +193,7 @@ export default function FarmerDashboardPage() {
           </div>
 
           {/* Farmer Metric Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
             <KPICard
               title="Today's Harvest"
               value="4,250 kg"
@@ -208,7 +208,7 @@ export default function FarmerDashboardPage() {
               subtitle="~13.0 Days Freshness"
               icon={Clock}
               color="blue"
-              trend="Deep Learning Safe"
+              trend="Freshness Verified"
             />
             <KPICard
               title="Spoilage Risk"
@@ -239,14 +239,14 @@ export default function FarmerDashboardPage() {
           {/* Harvest Registration & Active Batches Section */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Left: Harvest Batch Form */}
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+            <div className="bg-slate-900 border border-slate-800/80 rounded-xl p-4 sm:p-6 space-y-4">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-800/80">
                 <h4 className="text-sm font-bold text-white flex items-center gap-2">
                   <PlusCircle className="w-4 h-4 text-emerald-400" />
                   Log Fresh Harvest Batch
                 </h4>
                 <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/30">
-                  AI Spoilage Guard
+                  Quality Assurance
                 </span>
               </div>
 
@@ -345,16 +345,16 @@ export default function FarmerDashboardPage() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs flex items-center justify-center space-x-2 transition shadow-lg shadow-emerald-950/40 disabled:opacity-50 mt-2"
+                  className="w-full py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-semibold text-xs flex items-center justify-center space-x-2 transition shadow-md disabled:opacity-50 mt-2"
                 >
-                  <Sparkles className="w-4 h-4" />
-                  <span>{submitting ? 'Calculating Shelf-Life...' : 'Register Batch & Predict Spoilage'}</span>
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span>{submitting ? 'Calculating Shelf Life...' : 'Register Batch & Calculate Shelf Life'}</span>
                 </button>
               </form>
             </div>
 
             {/* Right: Active Harvest Batches */}
-            <div className="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-xl p-6 flex flex-col justify-between">
+            <div className="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-6 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
                   <div>

@@ -13,7 +13,6 @@ import {
   Biohazard, 
   CheckCircle2, 
   RefreshCw, 
-  Sparkles, 
   ArrowUpRight,
   ShieldCheck,
   Navigation,
@@ -105,9 +104,9 @@ export default function DistributorDashboardPage() {
           subtitle="Refrigerated fleet dispatch, cold hub bay allocation, and VRPTW delivery routing"
         />
 
-        <main className="flex-1 p-8 space-y-8 max-w-7xl mx-auto w-full">
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 max-w-7xl mx-auto w-full">
           {/* Header Bar */}
-          <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-slate-800/80">
             <div>
               <div className="flex items-center space-x-2">
                 <span className="px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 font-mono text-xs font-bold flex items-center gap-1">
@@ -116,7 +115,7 @@ export default function DistributorDashboardPage() {
                 </span>
                 <span className="text-xs text-slate-400">| Regional Logistics Hub: Hoskote & Kolar</span>
               </div>
-              <h3 className="text-xl font-bold text-white tracking-tight mt-1">
+              <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight mt-1">
                 Logistics Command: {currentUser?.fullName || 'Distributor Coordinator'}
               </h3>
               <p className="text-xs text-slate-400 mt-0.5">
@@ -134,16 +133,16 @@ export default function DistributorDashboardPage() {
               </button>
               <Link
                 href="/transportation"
-                className="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs flex items-center space-x-2 transition shadow-lg shadow-emerald-950/40"
+                className="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-semibold text-xs flex items-center space-x-2 transition shadow-md"
               >
-                <Sparkles className="w-4 h-4" />
-                <span>Solve VRPTW Routes</span>
+                <Navigation className="w-4 h-4" />
+                <span>Optimize VRPTW Routes</span>
               </Link>
             </div>
           </div>
 
           {/* Distributor KPI Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
             <KPICard
               title="Active Fleet"
               value="10 / 12"

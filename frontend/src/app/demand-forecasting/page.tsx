@@ -86,9 +86,9 @@ export default function DemandForecastingPage() {
         subtitle="Store-Level Replenishment Forecasting, Weekend Surge Detection & Stockout Guardrails" 
       />
 
-      <main className="flex-1 p-8 space-y-8 max-w-7xl mx-auto w-full">
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 max-w-7xl mx-auto w-full">
         {/* KPI Metric Summary */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <KPICard
             title="Total Network Demand (7D)"
             value={`${((demandData?.total_network_demand_kg || 142500) / 1000).toFixed(1)} MT`}
@@ -123,7 +123,7 @@ export default function DemandForecastingPage() {
         </div>
 
         {/* Aggregated Daily Network Demand Chart */}
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-6">
           <div className="flex items-center justify-between mb-6">
             <div>
               <h3 className="text-base font-bold text-white tracking-tight">

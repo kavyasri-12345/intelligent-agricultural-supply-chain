@@ -107,7 +107,7 @@ export default function FarmManagementPage() {
         subtitle="Unsupervised K-Means & DBSCAN Partitioning with Physical Feeder Hub Identification" 
       />
 
-      <main className="flex-1 p-8 space-y-8 max-w-7xl mx-auto w-full">
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 max-w-7xl mx-auto w-full">
         {/* Controls & Metrics */}
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center space-x-3">
@@ -155,7 +155,7 @@ export default function FarmManagementPage() {
           <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4">
             Active Spatial Consolidation Clusters ({clusters.length} Hubs)
           </h4>
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
             {clusters.map((c) => (
               <div key={c.cluster_code} className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-3">
                 <div className="flex items-center justify-between">

@@ -72,9 +72,9 @@ export default function AIIntelligencePage() {
         subtitle="Empirical Model Benchmarks, SHAP Feature Importance & Deep Learning Validation Reports" 
       />
 
-      <main className="flex-1 p-8 space-y-8 max-w-7xl mx-auto w-full">
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 max-w-7xl mx-auto w-full">
         {/* Top Overview Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <KPICard
             title="Active Model Suites"
             value="3 Domains"
@@ -109,11 +109,11 @@ export default function AIIntelligencePage() {
         </div>
 
         {/* SHAP Feature Importance Chart */}
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-6">
           <div className="flex items-center justify-between mb-4">
             <div>
               <h3 className="text-base font-bold text-white tracking-tight flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-emerald-400" />
+                <Cpu className="w-4 h-4 text-emerald-400" />
                 SHAP Global Feature Importance (Supply Forecasting - LightGBM)
               </h3>
               <p className="text-xs text-slate-400">
@@ -142,7 +142,7 @@ export default function AIIntelligencePage() {
         </div>
 
         {/* Empirical Benchmark Tables for All 3 Modules */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           {/* Module A: Supply */}
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-4">
             <div className="pb-3 border-b border-slate-800">

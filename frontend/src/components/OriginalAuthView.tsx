@@ -217,10 +217,10 @@ export default function OriginalAuthView({ initialMode = 'login' }: OriginalAuth
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col justify-center items-center p-6 text-slate-100">
-      <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-2xl">
+    <div className="min-h-screen bg-slate-950 flex flex-col justify-center items-center p-3 sm:p-6 text-slate-100 w-full">
+      <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 bg-slate-900/90 border border-slate-800/80 rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl backdrop-blur-sm">
         {/* Left Column: Form (Login or Signup) */}
-        <div className="space-y-6">
+        <div className="space-y-5 sm:space-y-6">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-green-400 flex items-center justify-center shadow-lg shadow-emerald-900/40">
               <Wheat className="w-6 h-6 text-slate-950 font-bold" />
@@ -457,7 +457,7 @@ export default function OriginalAuthView({ initialMode = 'login' }: OriginalAuth
         </div>
 
         {/* Right Column: 1-Click Role Switcher (Preserved from Original Version) */}
-        <div className="border-l border-slate-800 pl-0 md:pl-8 space-y-4 flex flex-col justify-center">
+        <div className="border-t md:border-t-0 md:border-l border-slate-800/80 pt-6 md:pt-0 pl-0 md:pl-8 space-y-4 flex flex-col justify-center">
           <div>
             <h4 className="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
               <UserCheck className="w-4 h-4" />

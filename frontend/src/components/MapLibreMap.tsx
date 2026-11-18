@@ -48,18 +48,18 @@ export default function MapLibreMap({
       <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-40" />
 
       {/* Region labels */}
-      <div className="absolute top-4 left-6 pointer-events-none z-10">
-        <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">
-          Bengaluru Urban Catchment (West)
+      <div className="absolute top-3 left-4 sm:top-4 sm:left-6 pointer-events-none z-10 hidden sm:block">
+        <h4 className="text-[11px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest">
+          Bengaluru Urban (West)
         </h4>
-        <span className="text-[10px] text-slate-400">NH-75 Logistics Corridor</span>
+        <span className="text-[10px] text-slate-500">NH-75 Logistics Corridor</span>
       </div>
 
-      <div className="absolute top-4 right-6 pointer-events-none z-10 text-right">
-        <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">
-          Kolar District Production Belt (East)
+      <div className="absolute top-3 right-4 sm:top-4 sm:right-6 pointer-events-none z-10 text-right hidden sm:block">
+        <h4 className="text-[11px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest">
+          Kolar Production (East)
         </h4>
-        <span className="text-[10px] text-slate-400">100 Tomato Farms & APMC Mandi</span>
+        <span className="text-[10px] text-slate-500">Tomato Farms & Mandi</span>
       </div>
 
       {/* SVG Vector Connections (Routes) */}
@@ -86,7 +86,7 @@ export default function MapLibreMap({
               stroke="url(#routeGrad)"
               strokeWidth="2.5"
               strokeDasharray="4 2"
-              className="opacity-70 animate-pulse"
+              className="opacity-75"
             />
           );
         })}
@@ -132,14 +132,14 @@ export default function MapLibreMap({
 
       {/* Selected Point Popover */}
       {selectedPoint && (
-        <div className="absolute bottom-4 left-6 bg-slate-900/95 border border-slate-700 rounded-xl p-4 shadow-xl z-20 max-w-sm backdrop-blur-md">
+        <div className="absolute bottom-16 sm:bottom-4 left-3 right-3 sm:right-auto sm:left-6 bg-slate-900/95 border border-slate-700 rounded-xl p-3 sm:p-4 shadow-xl z-20 max-w-sm backdrop-blur-md">
           <div className="flex items-start justify-between">
             <div>
               <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-300">
                 {selectedPoint.type}
               </span>
-              <h5 className="text-sm font-bold text-white mt-1.5">{selectedPoint.name}</h5>
-              <p className="text-xs text-slate-400 mt-0.5">
+              <h5 className="text-xs sm:text-sm font-bold text-white mt-1.5">{selectedPoint.name}</h5>
+              <p className="text-[11px] sm:text-xs text-slate-400 mt-0.5">
                 Coords: {selectedPoint.lat.toFixed(4)}°N, {selectedPoint.lng.toFixed(4)}°E
               </p>
             </div>
@@ -151,7 +151,7 @@ export default function MapLibreMap({
             </button>
           </div>
           {selectedPoint.details && (
-            <p className="text-xs text-slate-300 mt-2 bg-slate-800/60 p-2 rounded border border-slate-700/50">
+            <p className="text-[11px] sm:text-xs text-slate-300 mt-2 bg-slate-800/60 p-2 rounded border border-slate-700/50">
               {selectedPoint.details}
             </p>
           )}
@@ -164,7 +164,7 @@ export default function MapLibreMap({
       )}
 
       {/* Map Legend */}
-      <div className="absolute bottom-4 right-6 bg-slate-900/90 border border-slate-800 rounded-lg p-2.5 text-[11px] text-slate-300 z-10 flex items-center space-x-3.5 backdrop-blur-md">
+      <div className="absolute bottom-2 sm:bottom-4 right-2 sm:right-6 bg-slate-900/90 border border-slate-800 rounded-lg p-2 sm:p-2.5 text-[10px] sm:text-[11px] text-slate-300 z-10 flex flex-wrap items-center gap-2 sm:gap-3.5 backdrop-blur-md">
         <div className="flex items-center space-x-1.5">
           <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block" />
           <span>Farms</span>

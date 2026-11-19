@@ -193,8 +193,10 @@ export default function RetailerManagementPage() {
 
               <form onSubmit={handleCreateOrder} className="space-y-3.5 text-xs">
                 <div>
-                  <label className="block text-slate-700 mb-1 font-semibold">Select Retail Outlet</label>
+                  <label htmlFor="retailer-mgmt-outlet-select" className="block text-slate-700 mb-1 font-semibold">Select Retail Outlet</label>
                   <select
+                    id="retailer-mgmt-outlet-select"
+                    name="retailerCode"
                     value={newOrder.retailer_code}
                     onChange={(e) => setNewOrder({ ...newOrder, retailer_code: e.target.value })}
                     className="w-full px-3 py-2 rounded-lg bg-white border border-slate-300 text-slate-900 focus:outline-none focus:border-emerald-600"
@@ -206,8 +208,10 @@ export default function RetailerManagementPage() {
                 </div>
 
                 <div>
-                  <label className="block text-slate-700 mb-1 font-semibold">Requested Tomato Quantity (kg)</label>
+                  <label htmlFor="retailer-mgmt-quantity-input" className="block text-slate-700 mb-1 font-semibold">Requested Tomato Quantity (kg)</label>
                   <input
+                    id="retailer-mgmt-quantity-input"
+                    name="requestedQuantityKg"
                     type="number"
                     required
                     value={newOrder.requested_quantity_kg}
@@ -217,8 +221,10 @@ export default function RetailerManagementPage() {
                 </div>
 
                 <div>
-                  <label className="block text-slate-700 mb-1 font-semibold">Preferred Morning Delivery Window</label>
+                  <label htmlFor="retailer-mgmt-window-select" className="block text-slate-700 mb-1 font-semibold">Preferred Morning Delivery Window</label>
                   <select
+                    id="retailer-mgmt-window-select"
+                    name="deliveryWindow"
                     value={newOrder.delivery_window}
                     onChange={(e) => setNewOrder({ ...newOrder, delivery_window: e.target.value })}
                     className="w-full px-3 py-2 rounded-lg bg-white border border-slate-300 text-slate-900 focus:outline-none focus:border-emerald-600"

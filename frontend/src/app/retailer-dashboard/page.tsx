@@ -280,8 +280,10 @@ export default function RetailerDashboardPage() {
 
               <form onSubmit={handleOrderSubmit} className="space-y-3 text-xs">
                 <div>
-                  <label className="block text-slate-700 mb-1 font-semibold">Store Outlet</label>
+                  <label htmlFor="retailer-store-outlet-select" className="block text-slate-700 mb-1 font-semibold">Store Outlet</label>
                   <select
+                    id="retailer-store-outlet-select"
+                    name="retailerCode"
                     value={newOrder.retailer_code}
                     onChange={(e) => setNewOrder({ ...newOrder, retailer_code: e.target.value })}
                     className="w-full px-3 py-2 rounded-lg bg-white border border-slate-300 text-slate-900 focus:outline-none focus:border-violet-600 focus:ring-1 focus:ring-violet-600"
@@ -294,8 +296,10 @@ export default function RetailerDashboardPage() {
                 </div>
 
                 <div>
-                  <label className="block text-slate-700 mb-1 font-semibold">Produce Crop</label>
+                  <label htmlFor="retailer-produce-crop-input" className="block text-slate-700 mb-1 font-semibold">Produce Crop</label>
                   <input
+                    id="retailer-produce-crop-input"
+                    name="produceCrop"
                     type="text"
                     disabled
                     value="Tomato (Hybrid Shivam)"
@@ -304,8 +308,10 @@ export default function RetailerDashboardPage() {
                 </div>
 
                 <div>
-                  <label className="block text-slate-700 mb-1 font-semibold">Requested Quantity (kg)</label>
+                  <label htmlFor="retailer-quantity-input" className="block text-slate-700 mb-1 font-semibold">Requested Quantity (kg)</label>
                   <input
+                    id="retailer-quantity-input"
+                    name="requestedQuantityKg"
                     type="number"
                     required
                     min="100"
@@ -318,8 +324,10 @@ export default function RetailerDashboardPage() {
                 </div>
 
                 <div>
-                  <label className="block text-slate-700 mb-1 font-semibold">Preferred Delivery Window</label>
+                  <label htmlFor="retailer-delivery-window-select" className="block text-slate-700 mb-1 font-semibold">Preferred Delivery Window</label>
                   <select
+                    id="retailer-delivery-window-select"
+                    name="deliveryWindow"
                     value={newOrder.delivery_window}
                     onChange={(e) => setNewOrder({ ...newOrder, delivery_window: e.target.value })}
                     className="w-full px-3 py-2 rounded-lg bg-white border border-slate-300 text-slate-900 focus:outline-none focus:border-violet-600 focus:ring-1 focus:ring-violet-600"

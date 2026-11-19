@@ -64,14 +64,17 @@ export default function ColdStoragePage() {
     setSelectedFacility((prev: any) => ({ ...prev, setpoint_temp_celsius: newSetpoint }));
 
     try {
-      await fetch(getBackendUrl(`/api/v1/storage/${selectedFacility.id}/setpoint`), {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('agri_jwt_token') || ''}`
-        },
-        body: JSON.stringify({ setpoint_temp_celsius: newSetpoint })
-      });
+      const token = typeof window !== 'undefined' ? localStorage.getItem('agri_jwt_token') : null;
+      if (token && !token.startsWith('jwt_token_') && !token.startsWith('mock_')) {
+        await fetch(getBackendUrl(`/api/v1/storage/${selectedFacility.id}/setpoint`), {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ setpoint_temp_celsius: newSetpoint })
+        });
+      }
     } catch (err) {
       console.warn('Setpoint sync note:', err);
     }
@@ -199,6 +202,8 @@ export default function ColdStoragePage() {
 
             <div className="flex items-center space-x-3">
               <input
+                id="cold-storage-setpoint-input"
+                name="setpoint_temp_celsius"
                 type="number"
                 step="0.5"
                 min="8.0"

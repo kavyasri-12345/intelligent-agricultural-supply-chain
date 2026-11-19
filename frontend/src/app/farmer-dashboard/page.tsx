@@ -302,8 +302,10 @@ export default function FarmerDashboardPage() {
 
               <form onSubmit={handleHarvestSubmit} className="space-y-3 text-xs">
                 <div>
-                  <label className="block text-slate-700 mb-1 font-semibold">Crop & Variety</label>
+                  <label htmlFor="farmer-crop-variety-input" className="block text-slate-700 mb-1 font-semibold">Crop & Variety</label>
                   <input
+                    id="farmer-crop-variety-input"
+                    name="cropVariety"
                     type="text"
                     disabled
                     value="Tomato (Hybrid Shivam)"
@@ -313,8 +315,10 @@ export default function FarmerDashboardPage() {
 
                 <div className="grid grid-cols-2 gap-2">
                   <div>
-                    <label className="block text-slate-700 mb-1 font-semibold">Quantity (kg)</label>
+                    <label htmlFor="farmer-quantity-input" className="block text-slate-700 mb-1 font-semibold">Quantity (kg)</label>
                     <input
+                      id="farmer-quantity-input"
+                      name="quantityKg"
                       type="number"
                       required
                       min="100"
@@ -325,8 +329,10 @@ export default function FarmerDashboardPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-slate-700 mb-1 font-semibold">Harvest Age (hrs)</label>
+                    <label htmlFor="farmer-harvest-age-input" className="block text-slate-700 mb-1 font-semibold">Harvest Age (hrs)</label>
                     <input
+                      id="farmer-harvest-age-input"
+                      name="harvestAgeHours"
                       type="number"
                       step="0.1"
                       required
@@ -339,8 +345,10 @@ export default function FarmerDashboardPage() {
 
                 <div className="grid grid-cols-2 gap-2">
                   <div>
-                    <label className="block text-slate-700 mb-1 font-semibold">Firmness (0.5-1.0)</label>
+                    <label htmlFor="farmer-firmness-input" className="block text-slate-700 mb-1 font-semibold">Firmness (0.5-1.0)</label>
                     <input
+                      id="farmer-firmness-input"
+                      name="initialFirmness"
                       type="number"
                       step="0.01"
                       min="0.5"
@@ -352,8 +360,10 @@ export default function FarmerDashboardPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-slate-700 mb-1 font-semibold">Brix Sugars (°Bx)</label>
+                    <label htmlFor="farmer-brix-input" className="block text-slate-700 mb-1 font-semibold">Brix Sugars (°Bx)</label>
                     <input
+                      id="farmer-brix-input"
+                      name="initialBrix"
                       type="number"
                       step="0.1"
                       min="3.0"
@@ -367,8 +377,10 @@ export default function FarmerDashboardPage() {
                 </div>
 
                 <div>
-                  <label className="block text-slate-700 mb-1 font-semibold">Ambient Field Temp (°C)</label>
+                  <label htmlFor="farmer-field-temp-input" className="block text-slate-700 mb-1 font-semibold">Ambient Field Temp (°C)</label>
                   <input
+                    id="farmer-field-temp-input"
+                    name="avgExposureTempC"
                     type="number"
                     step="0.5"
                     required

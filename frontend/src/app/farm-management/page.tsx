@@ -241,8 +241,10 @@ export default function FarmManagementPage() {
 
               <form onSubmit={handleRegisterFarm} className="space-y-3.5 text-xs">
                 <div>
-                  <label className="block text-slate-700 mb-1 font-semibold">Estate / Farm Name</label>
+                  <label htmlFor="farm-name-input" className="block text-slate-700 mb-1 font-semibold">Estate / Farm Name</label>
                   <input
+                    id="farm-name-input"
+                    name="farmName"
                     type="text"
                     required
                     value={newFarm.name}
@@ -254,8 +256,10 @@ export default function FarmManagementPage() {
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-slate-700 mb-1 font-semibold">Taluk</label>
+                    <label htmlFor="farm-taluk-select" className="block text-slate-700 mb-1 font-semibold">Taluk</label>
                     <select
+                      id="farm-taluk-select"
+                      name="taluk"
                       value={newFarm.taluk}
                       onChange={(e) => setNewFarm({ ...newFarm, taluk: e.target.value })}
                       className="w-full px-3 py-2 rounded-lg bg-white border border-slate-300 text-slate-900 focus:outline-none focus:border-emerald-600"
@@ -266,8 +270,10 @@ export default function FarmManagementPage() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-slate-700 mb-1 font-semibold">Acreage (Acres)</label>
+                    <label htmlFor="farm-acreage-input" className="block text-slate-700 mb-1 font-semibold">Acreage (Acres)</label>
                     <input
+                      id="farm-acreage-input"
+                      name="acreage"
                       type="number"
                       step="0.1"
                       value={newFarm.acreage}
@@ -279,8 +285,10 @@ export default function FarmManagementPage() {
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-slate-700 mb-1 font-semibold">Latitude</label>
+                    <label htmlFor="farm-lat-input" className="block text-slate-700 mb-1 font-semibold">Latitude</label>
                     <input
+                      id="farm-lat-input"
+                      name="lat"
                       type="text"
                       value={newFarm.lat}
                       onChange={(e) => setNewFarm({ ...newFarm, lat: e.target.value })}
@@ -288,8 +296,10 @@ export default function FarmManagementPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-slate-700 mb-1 font-semibold">Longitude</label>
+                    <label htmlFor="farm-lng-input" className="block text-slate-700 mb-1 font-semibold">Longitude</label>
                     <input
+                      id="farm-lng-input"
+                      name="lng"
                       type="text"
                       value={newFarm.lng}
                       onChange={(e) => setNewFarm({ ...newFarm, lng: e.target.value })}
@@ -299,8 +309,10 @@ export default function FarmManagementPage() {
                 </div>
 
                 <div>
-                  <label className="block text-slate-700 mb-1 font-semibold">Estimated Harvest Yield (kg)</label>
+                  <label htmlFor="farm-yield-input" className="block text-slate-700 mb-1 font-semibold">Estimated Harvest Yield (kg)</label>
                   <input
+                    id="farm-yield-input"
+                    name="baseYieldKg"
                     type="number"
                     value={newFarm.base_yield_kg}
                     onChange={(e) => setNewFarm({ ...newFarm, base_yield_kg: e.target.value })}

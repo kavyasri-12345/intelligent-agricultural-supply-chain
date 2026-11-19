@@ -393,8 +393,10 @@ export default function SpoilageIntelligencePage() {
 
               <form onSubmit={handleHarvestSubmit} className="space-y-3 text-xs">
                 <div>
-                  <label className="block text-slate-600 mb-1 font-medium">Farm ID</label>
+                  <label htmlFor="spoilage-farm-id-input" className="block text-slate-600 mb-1 font-medium">Farm ID</label>
                   <input
+                    id="spoilage-farm-id-input"
+                    name="farmId"
                     type="text"
                     required
                     value={newHarvest.farm_id}
@@ -405,8 +407,10 @@ export default function SpoilageIntelligencePage() {
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-slate-600 mb-1 font-medium">Quantity (kg)</label>
+                    <label htmlFor="spoilage-quantity-input" className="block text-slate-600 mb-1 font-medium">Quantity (kg)</label>
                     <input
+                      id="spoilage-quantity-input"
+                      name="quantityKg"
                       type="number"
                       required
                       value={newHarvest.quantity_kg}
@@ -415,8 +419,10 @@ export default function SpoilageIntelligencePage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-slate-600 mb-1 font-medium">Harvest Age (Hours)</label>
+                    <label htmlFor="spoilage-harvest-age-input" className="block text-slate-600 mb-1 font-medium">Harvest Age (Hours)</label>
                     <input
+                      id="spoilage-harvest-age-input"
+                      name="harvestAgeHours"
                       type="number"
                       value={newHarvest.harvest_age_hours}
                       onChange={(e) => setNewHarvest({ ...newHarvest, harvest_age_hours: e.target.value })}
@@ -427,8 +433,10 @@ export default function SpoilageIntelligencePage() {
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-slate-600 mb-1 font-medium">Ambient Exposure Temp (°C)</label>
+                    <label htmlFor="spoilage-temp-input" className="block text-slate-600 mb-1 font-medium">Ambient Exposure Temp (°C)</label>
                     <input
+                      id="spoilage-temp-input"
+                      name="avgExposureTempC"
                       type="number"
                       step="0.5"
                       value={newHarvest.avg_exposure_temp_c}
@@ -437,8 +445,10 @@ export default function SpoilageIntelligencePage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-slate-600 mb-1 font-medium">Initial Firmness (0.0-1.0)</label>
+                    <label htmlFor="spoilage-firmness-input" className="block text-slate-600 mb-1 font-medium">Initial Firmness (0.0-1.0)</label>
                     <input
+                      id="spoilage-firmness-input"
+                      name="initialFirmness"
                       type="number"
                       step="0.01"
                       value={newHarvest.initial_firmness}

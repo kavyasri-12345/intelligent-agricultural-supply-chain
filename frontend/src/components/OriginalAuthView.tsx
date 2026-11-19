@@ -145,7 +145,7 @@ export default function OriginalAuthView({ initialMode = 'login' }: OriginalAuth
           fullName: matchingDemo.title,
           role: matchingDemo.role
         };
-        const demoToken = 'jwt_token_verified_' + Date.now();
+        const demoToken = `jwt_token_${matchingDemo.role.toLowerCase()}_` + Date.now();
         setSession(demoToken, demoUser);
         router.push(matchingDemo.dashboard);
         return;
@@ -239,7 +239,7 @@ export default function OriginalAuthView({ initialMode = 'login' }: OriginalAuth
           role: signupRole as User['role']
         };
         registeredUser = fallbackUser;
-        registeredToken = 'jwt_token_local_' + Date.now();
+        registeredToken = `jwt_token_${registeredUser.role.toLowerCase()}_` + Date.now();
       }
 
       setSession(registeredToken, registeredUser);
@@ -328,9 +328,12 @@ export default function OriginalAuthView({ initialMode = 'login' }: OriginalAuth
             /* Traditional Login Form (Exact Original Design) */
             <form onSubmit={handleLogin} className="space-y-4 text-xs">
               <div>
-                <label className="block text-slate-700 mb-1 font-semibold">Email Address</label>
+                <label htmlFor="login-email" className="block text-slate-700 mb-1 font-semibold">Email Address</label>
                 <input
+                  id="login-email"
+                  name="email"
                   type="email"
+                  autoComplete="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -340,9 +343,12 @@ export default function OriginalAuthView({ initialMode = 'login' }: OriginalAuth
               </div>
 
               <div>
-                <label className="block text-slate-700 mb-1 font-semibold">Password</label>
+                <label htmlFor="login-password" className="block text-slate-700 mb-1 font-semibold">Password</label>
                 <input
+                  id="login-password"
+                  name="password"
                   type="password"
+                  autoComplete="current-password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -374,9 +380,12 @@ export default function OriginalAuthView({ initialMode = 'login' }: OriginalAuth
             /* Role-Based Signup Form */
             <form onSubmit={handleSignup} className="space-y-3 text-xs">
               <div>
-                <label className="block text-slate-700 mb-1 font-semibold">Full Name</label>
+                <label htmlFor="signup-name" className="block text-slate-700 mb-1 font-semibold">Full Name</label>
                 <input
+                  id="signup-name"
+                  name="fullName"
                   type="text"
+                  autoComplete="name"
                   required
                   value={signupFullName}
                   onChange={(e) => setSignupFullName(e.target.value)}
@@ -386,9 +395,12 @@ export default function OriginalAuthView({ initialMode = 'login' }: OriginalAuth
               </div>
 
               <div>
-                <label className="block text-slate-700 mb-1 font-semibold">Email Address</label>
+                <label htmlFor="signup-email" className="block text-slate-700 mb-1 font-semibold">Email Address</label>
                 <input
+                  id="signup-email"
+                  name="email"
                   type="email"
+                  autoComplete="email"
                   required
                   value={signupEmail}
                   onChange={(e) => setSignupEmail(e.target.value)}
@@ -447,9 +459,12 @@ export default function OriginalAuthView({ initialMode = 'login' }: OriginalAuth
 
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <label className="block text-slate-700 mb-1 font-semibold">Password</label>
+                  <label htmlFor="signup-password" className="block text-slate-700 mb-1 font-semibold">Password</label>
                   <input
+                    id="signup-password"
+                    name="password"
                     type="password"
+                    autoComplete="new-password"
                     required
                     value={signupPassword}
                     onChange={(e) => setSignupPassword(e.target.value)}
@@ -458,9 +473,12 @@ export default function OriginalAuthView({ initialMode = 'login' }: OriginalAuth
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-700 mb-1 font-semibold">Confirm Password</label>
+                  <label htmlFor="signup-confirm-password" className="block text-slate-700 mb-1 font-semibold">Confirm Password</label>
                   <input
+                    id="signup-confirm-password"
+                    name="confirmPassword"
                     type="password"
+                    autoComplete="new-password"
                     required
                     value={signupConfirmPassword}
                     onChange={(e) => setSignupConfirmPassword(e.target.value)}

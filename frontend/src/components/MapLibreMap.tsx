@@ -63,7 +63,7 @@ export default function MapLibreMap({
       </div>
 
       {/* SVG Vector Connections (Routes) */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
+      <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 100 100" preserveAspectRatio="none">
         <defs>
           <linearGradient id="routeGradLight" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#0284c7" stopOpacity="0.9" />
@@ -75,7 +75,7 @@ export default function MapLibreMap({
           if (!route.stops || route.stops.length < 2) return null;
           const pathPoints = route.stops.map(s => {
             const { x, y } = projectToPct(s.lat, s.lng);
-            return `${x}%,${y}%`;
+            return `${x.toFixed(2)} ${y.toFixed(2)}`;
           }).join(' L ');
 
           return (
@@ -84,7 +84,8 @@ export default function MapLibreMap({
               d={`M ${pathPoints}`}
               fill="none"
               stroke="url(#routeGradLight)"
-              strokeWidth="2.5"
+              strokeWidth="2"
+              vectorEffect="non-scaling-stroke"
               strokeDasharray="4 2"
               className="opacity-80"
             />

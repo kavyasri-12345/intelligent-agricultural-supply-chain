@@ -6,6 +6,6 @@ const permit = require('../middleware/rbac');
 
 router.get('/vehicles', transportController.listVehicles);
 router.get('/fleet', transportController.listVehicles);
-router.patch('/vehicles/:id/status', authenticateJWT, permit('ADMIN', 'TRANSPORT_MANAGER', 'PLANNER'), transportController.updateVehicleStatus);
+router.patch('/vehicles/:id/status', authenticateJWT, permit('ADMIN', 'TRANSPORT_MANAGER', 'PLANNER', 'DISTRIBUTOR'), transportController.updateVehicleStatus);
 
 module.exports = router;

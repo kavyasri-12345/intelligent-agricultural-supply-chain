@@ -98,7 +98,7 @@ export default function DistributorDashboardPage() {
 
   return (
     <AuthGuard allowedRoles={['DISTRIBUTOR', 'TRANSPORT_MANAGER', 'STORAGE_MANAGER', 'ADMIN', 'PLANNER']}>
-      <div className="flex-1 flex flex-col min-h-screen bg-slate-950">
+      <div className="flex-1 flex flex-col min-h-screen bg-slate-50">
         <Navbar 
           title="Distributor & Cold-Chain Logistics Hub" 
           subtitle="Refrigerated fleet dispatch, cold hub bay allocation, and VRPTW delivery routing"
@@ -106,19 +106,19 @@ export default function DistributorDashboardPage() {
 
         <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 max-w-7xl mx-auto w-full">
           {/* Header Bar */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-slate-800/80">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-slate-200">
             <div>
               <div className="flex items-center space-x-2">
-                <span className="px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 font-mono text-xs font-bold flex items-center gap-1">
+                <span className="px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-blue-800 font-mono text-xs font-bold flex items-center gap-1">
                   <ShieldCheck className="w-3.5 h-3.5" />
                   DISTRIBUTOR WORKSPACE
                 </span>
-                <span className="text-xs text-slate-400">| Regional Logistics Hub: Hoskote & Kolar</span>
+                <span className="text-xs text-slate-500">| Regional Logistics Hub: Hoskote & Kolar</span>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight mt-1">
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight mt-1">
                 Logistics Command: {currentUser?.fullName || 'Distributor Coordinator'}
               </h3>
-              <p className="text-xs text-slate-400 mt-0.5">
+              <p className="text-xs text-slate-500 mt-0.5">
                 Active Cold Fleet: 10 / 12 Vehicles Active | Target Transit Temp: 4.0°C | FEFO Dispatch Priority
               </p>
             </div>
@@ -126,14 +126,14 @@ export default function DistributorDashboardPage() {
             <div className="flex items-center space-x-3">
               <button
                 onClick={fetchDistributorData}
-                className="px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-700 text-xs font-medium text-slate-300 hover:text-white flex items-center space-x-2 transition"
+                className="px-3.5 py-2 rounded-lg bg-white border border-slate-300 text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center space-x-2 transition shadow-xs"
               >
-                <RefreshCw className="w-3.5 h-3.5" />
+                <RefreshCw className="w-3.5 h-3.5 text-slate-500" />
                 <span>Refresh Telematics</span>
               </button>
               <Link
                 href="/transportation"
-                className="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-semibold text-xs flex items-center space-x-2 transition shadow-md"
+                className="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs flex items-center space-x-2 transition shadow-sm"
               >
                 <Navigation className="w-4 h-4" />
                 <span>Optimize VRPTW Routes</span>
@@ -191,10 +191,10 @@ export default function DistributorDashboardPage() {
             <div className="lg:col-span-2 space-y-3">
               <div className="flex items-center justify-between">
                 <div>
-                  <h4 className="text-sm font-bold text-white tracking-tight">Active VRPTW Transit Routes</h4>
-                  <p className="text-xs text-slate-400">Real-time GPS telematics from Kolar collection hubs to Bengaluru retail supermarkets</p>
+                  <h4 className="text-sm font-bold text-slate-900 tracking-tight">Active VRPTW Transit Routes</h4>
+                  <p className="text-xs text-slate-500">Real-time GPS telematics from Kolar collection hubs to Bengaluru retail supermarkets</p>
                 </div>
-                <span className="text-[11px] font-mono text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded border border-blue-500/20">
+                <span className="text-[11px] font-mono text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200 font-semibold">
                   OR-Tools Solver Connected
                 </span>
               </div>
@@ -202,34 +202,34 @@ export default function DistributorDashboardPage() {
             </div>
 
             {/* Right: Fleet Vehicles Panel */}
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col justify-between">
+            <div className="bg-white border border-slate-200 rounded-xl p-5 flex flex-col justify-between shadow-xs">
               <div>
-                <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
-                  <h4 className="text-sm font-bold text-white flex items-center gap-2">
-                    <Truck className="w-4 h-4 text-emerald-400" />
+                <div className="flex items-center justify-between pb-3 border-b border-slate-200 mb-4">
+                  <h4 className="text-sm font-bold text-slate-900 flex items-center gap-2">
+                    <Truck className="w-4 h-4 text-emerald-600" />
                     Fleet Reefer Telematics
                   </h4>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-semibold">
                     Live Sensors
                   </span>
                 </div>
 
                 <div className="space-y-3 overflow-y-auto max-h-[300px] pr-1">
                   {vehicles.map((v) => (
-                    <div key={v.id} className="p-3 rounded-lg bg-slate-950 border border-slate-800 text-xs">
+                    <div key={v.id} className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="font-mono font-bold text-white">{v.id}</span>
+                        <span className="font-mono font-bold text-slate-900">{v.id}</span>
                         <span className={`px-1.5 py-0.5 rounded text-[10px] font-semibold ${
-                          v.status === 'EN_ROUTE' ? 'bg-emerald-500/20 text-emerald-400' :
-                          v.status === 'LOADING_AT_HUB' ? 'bg-blue-500/20 text-blue-400' :
-                          'bg-slate-800 text-slate-400'
+                          v.status === 'EN_ROUTE' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' :
+                          v.status === 'LOADING_AT_HUB' ? 'bg-blue-50 text-blue-700 border border-blue-200' :
+                          'bg-slate-200 text-slate-700'
                         }`}>
                           {v.status}
                         </span>
                       </div>
-                      <div className="flex items-center justify-between text-slate-400 text-[11px] mt-1">
+                      <div className="flex items-center justify-between text-slate-500 text-[11px] mt-1">
                         <span>Cap: {v.capacity_kg} kg</span>
-                        <span className="font-mono text-blue-400 flex items-center gap-1">
+                        <span className="font-mono text-blue-700 flex items-center gap-1 font-semibold">
                           <Thermometer className="w-3 h-3" />
                           {v.current_temp_c}°C
                         </span>
@@ -240,10 +240,10 @@ export default function DistributorDashboardPage() {
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-slate-800 mt-4">
+              <div className="pt-3 border-t border-slate-200 mt-4">
                 <Link
                   href="/transportation"
-                  className="w-full py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 flex items-center justify-center space-x-2 transition"
+                  className="w-full py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-center space-x-2 transition"
                 >
                   <span>Detailed Fleet Dispatch & Routing</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
@@ -253,15 +253,15 @@ export default function DistributorDashboardPage() {
           </div>
 
           {/* Cold Storage Hub Allocation Overview */}
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
+          <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-xs">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h4 className="text-sm font-bold text-white tracking-tight">Cold Storage Facilities & Bay Occupancy</h4>
-                <p className="text-xs text-slate-400">Pre-cooling and multi-chamber cold hubs with FEFO inventory prioritisation</p>
+                <h4 className="text-sm font-bold text-slate-900 tracking-tight">Cold Storage Facilities & Bay Occupancy</h4>
+                <p className="text-xs text-slate-500">Pre-cooling and multi-chamber cold hubs with FEFO inventory prioritisation</p>
               </div>
               <Link
                 href="/cold-storage"
-                className="text-xs text-emerald-400 hover:text-emerald-300 font-medium flex items-center gap-1"
+                className="text-xs text-emerald-700 hover:text-emerald-800 font-semibold flex items-center gap-1"
               >
                 <span>Adjust Climate Setpoints</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
@@ -272,22 +272,22 @@ export default function DistributorDashboardPage() {
               {facilities.map((fac) => {
                 const utilPct = Math.round(((fac.current_utilization_kg || 25000) / fac.total_capacity_kg) * 100);
                 return (
-                  <div key={fac.id} className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+                  <div key={fac.id} className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="font-bold text-xs text-white truncate">{fac.name}</span>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                      <span className="font-bold text-xs text-slate-900 truncate">{fac.name}</span>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200 font-semibold">
                         {fac.setpoint_temp_celsius}°C
                       </span>
                     </div>
 
                     <div>
-                      <div className="flex justify-between text-[11px] text-slate-400 mb-1">
+                      <div className="flex justify-between text-[11px] text-slate-500 mb-1">
                         <span>Utilization</span>
-                        <span className="font-bold text-slate-200">{utilPct}%</span>
+                        <span className="font-bold text-slate-800">{utilPct}%</span>
                       </div>
-                      <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                      <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
                         <div 
-                          className="bg-emerald-500 h-full rounded-full transition-all duration-300"
+                          className="bg-emerald-600 h-full rounded-full transition-all duration-300"
                           style={{ width: `${utilPct}%` }}
                         />
                       </div>

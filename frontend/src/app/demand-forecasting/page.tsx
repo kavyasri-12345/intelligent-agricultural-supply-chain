@@ -80,7 +80,7 @@ export default function DemandForecastingPage() {
 
   return (
     <AuthGuard allowedRoles={['RETAILER', 'ADMIN', 'PLANNER']}>
-      <div className="flex-1 flex flex-col min-h-screen bg-slate-950">
+      <div className="flex-1 flex flex-col min-h-screen bg-slate-50 text-slate-900">
       <Navbar 
         title="Urban Retailer Demand Intelligence" 
         subtitle="Store-Level Replenishment Forecasting, Weekend Surge Detection & Stockout Guardrails" 
@@ -123,17 +123,17 @@ export default function DemandForecastingPage() {
         </div>
 
         {/* Aggregated Daily Network Demand Chart */}
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-6">
+        <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-6 shadow-xs">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h3 className="text-base font-bold text-white tracking-tight">
+              <h3 className="text-base font-bold text-slate-900 tracking-tight">
                 Bengaluru Urban Network: 7-Day Demand Profile (kg)
               </h3>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-500">
                 Noticeable +35% surge on Friday-Saturday restocking cycles across central supermarkets
               </p>
             </div>
-            <span className="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/20">
+            <span className="text-xs font-mono text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200 font-semibold">
               Model: LightGBM Multi-Store
             </span>
           </div>
@@ -141,12 +141,12 @@ export default function DemandForecastingPage() {
           <div className="h-72 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={dailyNetworkChart} margin={{ top: 10, right: 30, left: 10, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                <XAxis dataKey="day" stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                <YAxis stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                <XAxis dataKey="day" stroke="#94a3b8" tick={{ fill: '#64748b', fontSize: 11 }} />
+                <YAxis stroke="#94a3b8" tick={{ fill: '#64748b', fontSize: 11 }} />
                 <Tooltip 
-                  contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px', fontSize: '12px' }}
-                  itemStyle={{ color: '#e2e8f0' }}
+                  contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', borderRadius: '8px', fontSize: '12px', color: '#0f172a', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+                  itemStyle={{ color: '#0f172a' }}
                 />
                 <Bar dataKey="demand_kg" fill="#8b5cf6" radius={[6, 6, 0, 0]} name="Predicted Demand (kg)" />
               </BarChart>
@@ -155,15 +155,15 @@ export default function DemandForecastingPage() {
         </div>
 
         {/* Store-by-Store Forecast Grid */}
-        <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden">
-          <div className="p-4 border-b border-slate-800 flex items-center justify-between">
-            <h4 className="text-sm font-bold text-white">Store-Level Weekly Allocation Demand</h4>
-            <span className="text-xs text-slate-400">20 Supermarkets across Bengaluru Urban Catchment</span>
+        <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-xs">
+          <div className="p-4 border-b border-slate-200 flex items-center justify-between">
+            <h4 className="text-sm font-bold text-slate-900">Store-Level Weekly Allocation Demand</h4>
+            <span className="text-xs text-slate-500">20 Supermarkets across Bengaluru Urban Catchment</span>
           </div>
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-950 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
+              <thead className="bg-slate-50 text-slate-600 uppercase text-[10px] tracking-wider border-b border-slate-200">
                 <tr>
                   <th className="py-3 px-4">Store Code</th>
                   <th className="py-3 px-4">Supermarket Outlet</th>
@@ -173,31 +173,31 @@ export default function DemandForecastingPage() {
                   <th className="py-3 px-4">Status & Buffer</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800 text-slate-200">
+              <tbody className="divide-y divide-slate-100 text-slate-700">
                 {demandData?.store_forecasts && Object.entries(demandData.store_forecasts).map(([sCode, sData]: [string, any]) => {
                   const maxDay = sData.daily_forecast.reduce((prev: any, cur: any) => prev.predicted_demand_kg > cur.predicted_demand_kg ? prev : cur);
                   const isSurge = sData.weekly_total_kg > 8000;
 
                   return (
-                    <tr key={sCode} className="hover:bg-slate-800/40 transition">
-                      <td className="py-3 px-4 font-mono font-bold text-violet-400">{sCode}</td>
-                      <td className="py-3 px-4 font-semibold text-white">{sData.store_name}</td>
-                      <td className="py-3 px-4 font-mono font-bold text-slate-200">
+                    <tr key={sCode} className="hover:bg-slate-50/70 transition">
+                      <td className="py-3 px-4 font-mono font-bold text-violet-700">{sCode}</td>
+                      <td className="py-3 px-4 font-semibold text-slate-900">{sData.store_name}</td>
+                      <td className="py-3 px-4 font-mono font-bold text-slate-900">
                         {sData.weekly_total_kg.toLocaleString()} kg
                       </td>
-                      <td className="py-3 px-4 font-mono text-slate-400">
+                      <td className="py-3 px-4 font-mono text-slate-500">
                         {Math.round(sData.weekly_total_kg / 7).toLocaleString()} kg/d
                       </td>
-                      <td className="py-3 px-4 font-mono text-emerald-400">
+                      <td className="py-3 px-4 font-mono text-emerald-700 font-semibold">
                         Day {maxDay.day} ({maxDay.predicted_demand_kg} kg)
                       </td>
                       <td className="py-3 px-4">
                         {isSurge ? (
-                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30">
+                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200">
                             Demand Surge (+30%)
                           </span>
                         ) : (
-                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
                             Stock Synchronized
                           </span>
                         )}

@@ -11,16 +11,16 @@ function ShellInner({ children }: { children: React.ReactNode }) {
 
   if (isAuthPage) {
     return (
-      <main className="w-full min-h-screen bg-slate-950 flex flex-col justify-center items-center px-4 py-8 sm:px-6">
+      <main className="w-full min-h-screen bg-slate-50 flex flex-col justify-center items-center px-4 py-8 sm:px-6">
         {children}
       </main>
     );
   }
 
   return (
-    <div className="flex min-h-screen bg-slate-950 text-slate-100 w-full relative">
+    <div className="flex min-h-screen bg-slate-50 text-slate-900 w-full relative">
       <Sidebar />
-      <div className="flex-1 w-full lg:ml-64 flex flex-col min-h-screen overflow-x-hidden">
+      <div className="flex-1 w-full lg:ml-64 flex flex-col min-h-screen overflow-x-hidden bg-slate-50">
         {children}
       </div>
     </div>

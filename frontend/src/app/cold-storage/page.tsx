@@ -64,7 +64,7 @@ export default function ColdStoragePage() {
 
   return (
     <AuthGuard allowedRoles={['DISTRIBUTOR', 'STORAGE_MANAGER', 'TRANSPORT_MANAGER', 'ADMIN', 'PLANNER']}>
-      <div className="flex-1 flex flex-col min-h-screen bg-slate-950">
+      <div className="flex-1 flex flex-col min-h-screen bg-slate-50 text-slate-900">
       <Navbar 
         title="Intelligent Cold-Chain Buffer Facilities" 
         subtitle="Multi-Facility Bay Occupancy, Climate Control Setpoints & CP-SAT Inventory Placement" 
@@ -114,25 +114,25 @@ export default function ColdStoragePage() {
             return (
               <div 
                 key={fac.id} 
-                className={`p-4 sm:p-6 rounded-xl border transition-all ${
+                className={`p-4 sm:p-6 rounded-xl border transition-all cursor-pointer ${
                   selectedFacility?.id === fac.id 
-                    ? 'bg-slate-900 border-blue-500/50 ring-1 ring-blue-500/20' 
-                    : 'bg-slate-900 border-slate-800 hover:border-slate-700'
+                    ? 'bg-white border-blue-500 ring-2 ring-blue-500/10 shadow-sm' 
+                    : 'bg-white border-slate-200 hover:border-slate-300 shadow-xs'
                 }`}
                 onClick={() => { setSelectedFacility(fac); setNewSetpoint(fac.setpoint_temp_celsius); }}
               >
                 <div className="flex items-start justify-between mb-4">
                   <div>
-                    <span className="text-[10px] font-mono font-bold text-blue-400 uppercase tracking-wider">
+                    <span className="text-[10px] font-mono font-bold text-blue-700 uppercase tracking-wider">
                       {fac.facility_code}
                     </span>
-                    <h4 className="text-base font-bold text-white mt-1">{fac.name}</h4>
-                    <p className="text-xs text-slate-400 mt-0.5">
+                    <h4 className="text-base font-bold text-slate-900 mt-1">{fac.name}</h4>
+                    <p className="text-xs text-slate-500 mt-0.5">
                       Coordinates: {fac.lat.toFixed(4)}°N, {fac.lng.toFixed(4)}°E
                     </p>
                   </div>
-                  <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                     Operational
                   </span>
                 </div>
@@ -140,25 +140,25 @@ export default function ColdStoragePage() {
                 {/* Capacity Progress Bar */}
                 <div className="space-y-2 mb-4">
                   <div className="flex justify-between text-xs">
-                    <span className="text-slate-400">Bay Occupancy</span>
-                    <span className="font-mono text-white font-bold">{occupied.toLocaleString()} / {cap.toLocaleString()} kg ({pct}%)</span>
+                    <span className="text-slate-500">Bay Occupancy</span>
+                    <span className="font-mono text-slate-900 font-bold">{occupied.toLocaleString()} / {cap.toLocaleString()} kg ({pct}%)</span>
                   </div>
-                  <div className="w-full bg-slate-950 h-2.5 rounded-full overflow-hidden border border-slate-800">
+                  <div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden border border-slate-200">
                     <div 
-                      className="bg-gradient-to-r from-blue-500 to-emerald-400 h-full rounded-full transition-all duration-500" 
+                      className="bg-gradient-to-r from-blue-500 to-emerald-500 h-full rounded-full transition-all duration-500" 
                       style={{ width: `${pct}%` }} 
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3 pt-3 border-t border-slate-800 text-xs">
+                <div className="grid grid-cols-2 gap-3 pt-3 border-t border-slate-100 text-xs">
                   <div>
-                    <span className="text-slate-400 block text-[11px]">Chamber Setpoint:</span>
-                    <span className="font-mono font-bold text-emerald-400 text-sm">{fac.setpoint_temp_celsius}°C</span>
+                    <span className="text-slate-500 block text-[11px]">Chamber Setpoint:</span>
+                    <span className="font-mono font-bold text-emerald-700 text-sm">{fac.setpoint_temp_celsius}°C</span>
                   </div>
                   <div>
-                    <span className="text-slate-400 block text-[11px]">Storage Cost:</span>
-                    <span className="font-mono font-bold text-slate-200 text-sm">₹{fac.storage_cost_per_kg_day} /kg/day</span>
+                    <span className="text-slate-500 block text-[11px]">Storage Cost:</span>
+                    <span className="font-mono font-bold text-slate-800 text-sm">₹{fac.storage_cost_per_kg_day} /kg/day</span>
                   </div>
                 </div>
               </div>
@@ -168,13 +168,13 @@ export default function ColdStoragePage() {
 
         {/* Setpoint Temperature Adjustment Panel */}
         {selectedFacility && (
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-6 flex flex-wrap items-center justify-between gap-4">
+          <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-6 flex flex-wrap items-center justify-between gap-4 shadow-xs">
             <div>
-              <h4 className="text-sm font-bold text-white flex items-center gap-2">
-                <Settings className="w-4 h-4 text-emerald-400" />
+              <h4 className="text-sm font-bold text-slate-900 flex items-center gap-2">
+                <Settings className="w-4 h-4 text-emerald-600" />
                 Adjust Bay Environmental Setpoint: {selectedFacility.name}
               </h4>
-              <p className="text-xs text-slate-400 mt-0.5">
+              <p className="text-xs text-slate-500 mt-0.5">
                 Target temperature controls Arrhenius post-harvest respiration and ethylene synthesis. Recommended: 10.0°C - 13.0°C.
               </p>
             </div>
@@ -187,12 +187,12 @@ export default function ColdStoragePage() {
                 max="20.0"
                 value={newSetpoint}
                 onChange={(e) => setNewSetpoint(parseFloat(e.target.value))}
-                className="w-24 px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 font-mono text-white text-sm text-center"
+                className="w-24 px-3 py-1.5 rounded-lg bg-white border border-slate-300 font-mono text-slate-900 text-sm text-center focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
               />
-              <span className="text-xs text-slate-300">°C</span>
+              <span className="text-xs text-slate-600 font-medium">°C</span>
               <button
                 onClick={handleUpdateSetpoint}
-                className="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs transition"
+                className="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs transition shadow-xs"
               >
                 Apply Setpoint
               </button>

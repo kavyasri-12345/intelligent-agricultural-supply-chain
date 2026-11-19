@@ -52,14 +52,14 @@ export default function AuthGuard({ children, allowedRoles, requiredDashboard }:
 
   if (checking || !authorized) {
     return (
-      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-6 text-slate-100">
+      <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-6 text-slate-800">
         <div className="flex flex-col items-center space-y-4">
-          <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center">
-            <Loader2 className="w-6 h-6 text-emerald-400 animate-spin" />
+          <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center shadow-xs">
+            <Loader2 className="w-6 h-6 text-emerald-600 animate-spin" />
           </div>
           <div className="text-center">
-            <p className="text-sm font-semibold text-white">Verifying Authorization & Session</p>
-            <p className="text-xs text-slate-400 mt-1">Checking cryptographic JWT & role permissions...</p>
+            <p className="text-sm font-semibold text-slate-900">Verifying Authorization & Session</p>
+            <p className="text-xs text-slate-500 mt-1">Checking session credentials and role permissions...</p>
           </div>
         </div>
       </div>

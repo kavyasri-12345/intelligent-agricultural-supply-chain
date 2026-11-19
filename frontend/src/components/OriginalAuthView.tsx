@@ -110,16 +110,6 @@ export default function OriginalAuthView({ initialMode = 'login' }: OriginalAuth
   const [error, setError] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
 
-  // Auto-redirect if already logged in
-  useEffect(() => {
-    const token = getStoredToken();
-    const user = getStoredUser();
-    if (token && user) {
-      const targetDashboard = getRoleDashboard(user.role);
-      router.push(targetDashboard);
-    }
-  }, [router]);
-
   const handleLogin = async (e?: React.FormEvent, customCreds?: { email: string; password: string }) => {
     if (e) e.preventDefault();
     setLoading(true);

@@ -22,12 +22,100 @@ export default function TransportationPage() {
   const [activeRoutes, setActiveRoutes] = useState<any[]>([]);
   const [selectedRoute, setSelectedRoute] = useState<any>(null);
 
+  const defaultVehicles = [
+    { id: 1, plate: 'KA-04-E-1044', vehicle_type: 'Reefer Truck', capacity_kg: 2500, cost_per_km: 18.5, is_refrigerated: true },
+    { id: 2, plate: 'KA-04-E-2190', vehicle_type: 'Reefer Truck', capacity_kg: 2500, cost_per_km: 18.5, is_refrigerated: true },
+    { id: 3, plate: 'KA-04-E-3301', vehicle_type: 'Reefer Truck', capacity_kg: 3000, cost_per_km: 20.0, is_refrigerated: true },
+    { id: 4, plate: 'KA-04-E-4552', vehicle_type: 'Reefer Truck', capacity_kg: 3000, cost_per_km: 20.0, is_refrigerated: true },
+    { id: 5, plate: 'KA-04-E-8831', vehicle_type: 'Insulated Van', capacity_kg: 1500, cost_per_km: 14.0, is_refrigerated: false },
+    { id: 6, plate: 'KA-04-E-9022', vehicle_type: 'Insulated Van', capacity_kg: 1500, cost_per_km: 14.0, is_refrigerated: false },
+    { id: 7, plate: 'KA-04-E-7124', vehicle_type: 'Pickup Flatbed', capacity_kg: 1000, cost_per_km: 11.5, is_refrigerated: false },
+    { id: 8, plate: 'KA-04-E-6218', vehicle_type: 'Pickup Flatbed', capacity_kg: 1000, cost_per_km: 11.5, is_refrigerated: false }
+  ];
+
+  const defaultRoutes = [
+    {
+      vehicle_id: 1,
+      plate_number: 'KA-04-E-1044',
+      vehicle_type: 'Reefer Truck',
+      carried_load_kg: 2400,
+      capacity_kg: 2500,
+      utilization_pct: 96,
+      stops_count: 4,
+      route_distance_km: 74.2,
+      is_refrigerated: true,
+      color: '#059669',
+      coordinates: [
+        [78.1292, 13.1367],
+        [77.7981, 13.0711],
+        [77.7500, 12.9698],
+        [77.6387, 12.9352]
+      ],
+      stops: [
+        { name: 'Kolar Pre-Cool Hub', arrival_minute: 0, estimated_time: '06:00 AM' },
+        { name: 'Hoskote Cross-Dock', arrival_minute: 45, estimated_time: '06:45 AM' },
+        { name: 'More Megastore Whitefield', arrival_minute: 90, estimated_time: '07:30 AM' },
+        { name: 'Fresh Basket Koramangala', arrival_minute: 140, estimated_time: '08:20 AM' }
+      ]
+    },
+    {
+      vehicle_id: 2,
+      plate_number: 'KA-04-E-2190',
+      vehicle_type: 'Reefer Truck',
+      carried_load_kg: 2350,
+      capacity_kg: 2500,
+      utilization_pct: 94,
+      stops_count: 3,
+      route_distance_km: 68.5,
+      is_refrigerated: true,
+      color: '#0284c7',
+      coordinates: [
+        [78.1292, 13.1367],
+        [77.7981, 13.0711],
+        [77.6412, 12.9716],
+        [77.5946, 12.9299]
+      ],
+      stops: [
+        { name: 'Kolar Pre-Cool Hub', arrival_minute: 0, estimated_time: '06:15 AM' },
+        { name: 'Spencers Indiranagar', arrival_minute: 85, estimated_time: '07:40 AM' },
+        { name: 'Nature Basket Jayanagar', arrival_minute: 130, estimated_time: '08:25 AM' }
+      ]
+    },
+    {
+      vehicle_id: 5,
+      plate_number: 'KA-04-E-8831',
+      vehicle_type: 'Insulated Van',
+      carried_load_kg: 1400,
+      capacity_kg: 1500,
+      utilization_pct: 93,
+      stops_count: 3,
+      route_distance_km: 42.1,
+      is_refrigerated: false,
+      color: '#8b5cf6',
+      coordinates: [
+        [77.7981, 13.0711],
+        [77.5407, 13.0281],
+        [77.5701, 13.0034]
+      ],
+      stops: [
+        { name: 'Hoskote Cross-Dock', arrival_minute: 0, estimated_time: '07:00 AM' },
+        { name: 'Yeshwanthpur Wholesale', arrival_minute: 60, estimated_time: '08:00 AM' },
+        { name: 'Smart Bazaar Malleshwaram', arrival_minute: 95, estimated_time: '08:35 AM' }
+      ]
+    }
+  ];
+
   const fetchTransportData = async () => {
     try {
       const vRes = await fetch(getBackendUrl('/api/v1/transport/vehicles'));
-      if (vRes.ok) setVehicles(await vRes.json());
+      if (vRes.ok) {
+        const vData = await vRes.json();
+        if (Array.isArray(vData) && vData.length > 0) setVehicles(vData);
+        else setVehicles(defaultVehicles);
+      } else {
+        setVehicles(defaultVehicles);
+      }
 
-      // Fetch sample VRPTW solution routes
       const optRes = await fetch(getAiUrl('/api/v1/optimization/solve'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -36,12 +124,18 @@ export default function TransportationPage() {
       if (optRes.ok) {
         const sol = await optRes.json();
         const r = sol.vehicle_routing?.routes || [];
-        setActiveRoutes(r);
-        if (r.length > 0) setSelectedRoute(r[0]);
+        if (r.length > 0) {
+          setActiveRoutes(r);
+          setSelectedRoute(r[0]);
+          return;
+        }
       }
     } catch (err) {
-      console.warn('Transport fetch err:', err);
+      console.warn('Transport fallback activated:', err);
     }
+    setVehicles(defaultVehicles);
+    setActiveRoutes(defaultRoutes);
+    setSelectedRoute(defaultRoutes[0]);
   };
 
   useEffect(() => {

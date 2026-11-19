@@ -115,6 +115,19 @@ export default function AdminDashboardPage() {
         }));
       }
 
+      if (points.length === 0) {
+        points.push(
+          { id: 'FARM-01', name: 'Kolar Agro Green Field', lat: 13.1367, lng: 78.1291, type: 'FARM', details: 'Taluk: Kolar | Acreage: 4.5 | Harvest: 4200kg' },
+          { id: 'FARM-02', name: 'Srinivaspur Citrus & Tomato Nursery', lat: 13.3394, lng: 78.2144, type: 'FARM', details: 'Taluk: Srinivaspur | Acreage: 6.2 | Harvest: 5800kg' },
+          { id: 'FARM-03', name: 'Mulbagal Integrated Organic Patch', lat: 13.1631, lng: 78.3950, type: 'FARM', details: 'Taluk: Mulbagal | Acreage: 3.8 | Harvest: 3600kg' },
+          { id: 'HUB-ALPHA', name: 'Kolar Central Aggregation Hub', lat: 13.138, lng: 78.132, type: 'STORAGE', details: 'Capacity: 50,000kg | Setpoint: 11.5°C', load: '50000' },
+          { id: 'HUB-BETA', name: 'Hoskote Cross-Dock Distribution Center', lat: 13.0711, lng: 77.7981, type: 'STORAGE', details: 'Capacity: 40,000kg | Setpoint: 12.0°C', load: '40000' },
+          { id: 'RET-01', name: 'More Megastore Whitefield', lat: 12.9698, lng: 77.7500, type: 'RETAILER', details: 'Daily Demand: 1,850kg' },
+          { id: 'RET-02', name: 'Fresh Basket Koramangala', lat: 12.9352, lng: 77.6245, type: 'RETAILER', details: 'Daily Demand: 1,620kg' },
+          { id: 'RET-03', name: 'Spencers Hypermarket Indiranagar', lat: 12.9784, lng: 77.6408, type: 'RETAILER', details: 'Daily Demand: 1,780kg' }
+        );
+      }
+
       setMapPoints(points);
 
       // Supply-Demand 7-Day Comparison Series

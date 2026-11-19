@@ -55,42 +55,53 @@ export default function DistributorDashboardPage() {
     fetchDistributorData();
   }, []);
 
+  const defaultFacilities = [
+    { id: 'WH-01', name: 'Hoskote Central Cold Hub', total_capacity_kg: 50000, current_utilization_kg: 34500, setpoint_temp_celsius: 4.0 },
+    { id: 'WH-02', name: 'Kolar APMC Cold Facility', total_capacity_kg: 40000, current_utilization_kg: 27200, setpoint_temp_celsius: 4.5 },
+    { id: 'WH-03', name: 'Malur Pre-cooling Unit', total_capacity_kg: 25000, current_utilization_kg: 18100, setpoint_temp_celsius: 4.0 },
+    { id: 'WH-04', name: 'Bangarapet Hub', total_capacity_kg: 25000, current_utilization_kg: 15900, setpoint_temp_celsius: 5.0 }
+  ];
+
+  const defaultVehicles = [
+    { id: 'VEH-RF-01', type: 'Refrigerated 3.5T', capacity_kg: 3500, current_temp_c: 4.2, status: 'EN_ROUTE', eta_next_stop: '18 mins' },
+    { id: 'VEH-RF-02', type: 'Refrigerated 3.5T', capacity_kg: 3500, current_temp_c: 4.0, status: 'EN_ROUTE', eta_next_stop: '32 mins' },
+    { id: 'VEH-RF-03', type: 'Refrigerated 5.0T', capacity_kg: 5000, current_temp_c: 4.8, status: 'LOADING_AT_HUB', eta_next_stop: 'Departs 06:30' },
+    { id: 'VEH-RF-04', type: 'Refrigerated 2.5T', capacity_kg: 2500, current_temp_c: 4.1, status: 'STANDBY', eta_next_stop: 'Available' }
+  ];
+
   const fetchDistributorData = async () => {
     setLoading(true);
     try {
-      const [storageRes, fleetRes] = await Promise.all([
-        fetch(getBackendUrl('/api/v1/storage')),
-        fetch(getBackendUrl('/api/v1/transport/vehicles'))
-      ]);
-
-      if (storageRes.ok) {
-        const s = await storageRes.json();
-        setFacilities(Array.isArray(s) ? s : []);
-      } else {
-        setFacilities([
-          { id: 'WH-01', name: 'Hoskote Central Cold Hub', total_capacity_kg: 50000, current_utilization_kg: 34500, setpoint_temp_celsius: 4.0 },
-          { id: 'WH-02', name: 'Kolar APMC Cold Facility', total_capacity_kg: 40000, current_utilization_kg: 27200, setpoint_temp_celsius: 4.5 },
-          { id: 'WH-03', name: 'Malur Pre-cooling Unit', total_capacity_kg: 25000, current_utilization_kg: 18100, setpoint_temp_celsius: 4.0 },
-          { id: 'WH-04', name: 'Bangarapet Hub', total_capacity_kg: 25000, current_utilization_kg: 15900, setpoint_temp_celsius: 5.0 }
-        ]);
+      try {
+        const storageRes = await fetch(getBackendUrl('/api/v1/storage'));
+        if (storageRes.ok) {
+          const s = await storageRes.json();
+          if (Array.isArray(s) && s.length > 0) setFacilities(s);
+          else setFacilities(defaultFacilities);
+        } else {
+          setFacilities(defaultFacilities);
+        }
+      } catch (e) {
+        setFacilities(defaultFacilities);
       }
 
-      if (fleetRes.ok) {
-        const f = await fleetRes.json();
-        const vList = Array.isArray(f) ? f : (f.vehicles || []);
-        if (vList.length > 0) {
-          setVehicles(vList);
+      try {
+        const fleetRes = await fetch(getBackendUrl('/api/v1/transport/vehicles'));
+        if (fleetRes.ok) {
+          const f = await fleetRes.json();
+          const vList = Array.isArray(f) ? f : (f.vehicles || []);
+          if (vList.length > 0) setVehicles(vList);
+          else setVehicles(defaultVehicles);
+        } else {
+          setVehicles(defaultVehicles);
         }
-      } else {
-        setVehicles([
-          { id: 'VEH-RF-01', type: 'Refrigerated 3.5T', capacity_kg: 3500, current_temp_c: 4.2, status: 'EN_ROUTE', eta_next_stop: '18 mins' },
-          { id: 'VEH-RF-02', type: 'Refrigerated 3.5T', capacity_kg: 3500, current_temp_c: 4.0, status: 'EN_ROUTE', eta_next_stop: '32 mins' },
-          { id: 'VEH-RF-03', type: 'Refrigerated 5.0T', capacity_kg: 5000, current_temp_c: 4.8, status: 'LOADING_AT_HUB', eta_next_stop: 'Departs 06:30' },
-          { id: 'VEH-RF-04', type: 'Refrigerated 2.5T', capacity_kg: 2500, current_temp_c: 4.1, status: 'STANDBY', eta_next_stop: 'Available' }
-        ]);
+      } catch (e) {
+        setVehicles(defaultVehicles);
       }
     } catch (e) {
       console.warn('Distributor data fallback:', e);
+      setFacilities(defaultFacilities);
+      setVehicles(defaultVehicles);
     } finally {
       setLoading(false);
     }

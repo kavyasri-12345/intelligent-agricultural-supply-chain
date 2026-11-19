@@ -159,7 +159,13 @@ export default function OriginalAuthView({ initialMode = 'login' }: OriginalAuth
   const handleQuickSelect = (r: typeof QUICK_ROLES[0]) => {
     setEmail(r.email);
     setPassword(r.password);
-    handleLogin(undefined, { email: r.email, password: r.password });
+    setError('');
+    setSuccessMsg(`Selected ${r.title} (${r.role}). Click "Sign In" below to enter.`);
+
+    // If on signup mode, sync appropriate fields
+    if (r.role === 'FARMER' || r.role === 'DISTRIBUTOR' || r.role === 'RETAILER') {
+      setSignupRole(r.role);
+    }
   };
 
   const handleSignup = async (e: React.FormEvent) => {
@@ -490,42 +496,52 @@ export default function OriginalAuthView({ initialMode = 'login' }: OriginalAuth
           </p>
         </div>
 
-        {/* Right Column: 1-Click Role Switcher */}
+        {/* Right Column: Pre-Configured System Roles */}
         <div className="border-t md:border-t-0 md:border-l border-slate-200 pt-6 md:pt-0 pl-0 md:pl-8 space-y-4 flex flex-col justify-center">
           <div>
             <h4 className="text-xs font-bold text-emerald-700 uppercase tracking-wider flex items-center gap-1.5">
               <UserCheck className="w-4 h-4" />
-              Quick-Demo Role Selector (1-Click Login)
+              Pre-Configured System Roles
             </h4>
             <p className="text-[11px] text-slate-500 mt-1">
-              Select any pre-configured actor to access their role-specific dashboard:
+              Click any role to load its credentials, then click &quot;Sign In&quot; (or Register) to authenticate:
             </p>
           </div>
 
           <div className="space-y-2 overflow-y-auto max-h-[380px] pr-1">
-            {QUICK_ROLES.map((r) => (
-              <button
-                key={r.email}
-                onClick={() => handleQuickSelect(r)}
-                className="w-full text-left p-2.5 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 hover:border-emerald-300 transition group"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-slate-800 group-hover:text-emerald-700 transition">
-                    {r.title}
-                  </span>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-200 text-slate-700 font-semibold">
-                    {r.role}
-                  </span>
-                </div>
-                <p className="text-[10px] text-slate-500 mt-1 line-clamp-1">{r.desc}</p>
-              </button>
-            ))}
+            {QUICK_ROLES.map((r) => {
+              const isSelected = email === r.email;
+              return (
+                <button
+                  type="button"
+                  key={r.email}
+                  onClick={() => handleQuickSelect(r)}
+                  className={`w-full text-left p-2.5 rounded-lg border transition group ${
+                    isSelected
+                      ? 'bg-emerald-50 border-emerald-500 ring-1 ring-emerald-500/30'
+                      : 'bg-slate-50 hover:bg-slate-100 border-slate-200 hover:border-slate-300'
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <span className={`text-xs font-bold transition ${isSelected ? 'text-emerald-800' : 'text-slate-800 group-hover:text-emerald-700'}`}>
+                      {r.title}
+                    </span>
+                    <span className={`text-[10px] font-mono px-2 py-0.5 rounded font-semibold ${
+                      isSelected ? 'bg-emerald-200/80 text-emerald-900' : 'bg-slate-200 text-slate-700'
+                    }`}>
+                      {r.role}
+                    </span>
+                  </div>
+                  <p className="text-[10px] text-slate-500 mt-1 line-clamp-1">{r.desc}</p>
+                </button>
+              );
+            })}
           </div>
 
           <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-200 text-[11px] text-slate-600 flex items-center justify-between">
             <span className="flex items-center gap-1.5">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Role-Based Redirection Active</span>
+              <span>Role-Based Access Control</span>
             </span>
             <span className="text-emerald-700 font-mono text-[10px] font-bold">RBAC v1.0</span>
           </div>
